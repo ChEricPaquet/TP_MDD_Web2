@@ -1,8 +1,8 @@
-<?php $titreOnglet = 'Connexion - AJAX'; ?>
+<?php $titreOnglet = 'Connexion'; ?>
 
 <?php ob_start(); ?>
 
-<h1 class="text-center"><?php echo $titreOnglet; ?></h1>
+<h1 class="text-center">Connexion à un compte</h1>
 
 <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
     <div id="reponse"></div>

@@ -9,23 +9,71 @@
         <!-- Sur les petits écrans, les éléments du menu sont cachés par défaut et -->
         <!-- doivent être affichés lorsque le bouton hamburger est cliqué -->
         <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav">
+            <!-- Boutons de navigation à gauche -->
+            <ul class="navbar-nav me-auto">
                 <!-- Bouton vers la page d'accueil -->
                 <li class="nav-item">
                     <a
-                        class="nav-link <?php NavClass("afficherPageAccueil"); NavClassDefault(); ?>"
+                        class="nav-link <?php NavClass("afficherPageAccueil"); ?> <?php NavClassDefault(); ?>"
                         href="index.php?action=afficherPageAccueil">
                         Accueil
                     </a>
                 </li>
-                <!-- Bouton vers la page de paiement -->
+                <?php if (estConnecte()) { ?>
                 <li class="nav-item">
                     <a
-                        class="nav-link <?php NavClass("afficherPagePaiement"); ?>"
-                        href="index.php?action=afficherPagePaiement">
-                        Deck
+                        class="nav-link <?php NavClass("afficherDecksBuilder"); ?>"
+                        href="index.php?action=afficherDecksBuilder">
+                        Decks Builder
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link <?php NavClass("afficherClan"); ?>"
+                        href="index.php?action=afficherClan">
+                        Clans
+                    </a>
+                <?php } ?>
+            </ul>
+            <!-- Boutons de navigation à droite -->
+            <ul class="navbar-nav">
+                <?php if (!estConnecte()) { ?>
+                <!-- Bouton vers la page de connexion -->
+                <li class="nav-item">
+                    <a
+                        class="nav-link <?php NavClass("afficherPageConnexion"); ?>"
+                        href="index.php?action=afficherPageConnexion">
+                        Connexion
+                    </a>
+                </li>
+                <!-- Bouton vers la page d'inscription -->
+                <li class="nav-item">
+                    <a
+                        class="nav-link <?php NavClass("afficherPageInscription"); ?>"
+                        href="index.php?action=afficherPageInscription">
+                        Inscription
+                    </a>
+                </li>
+                <?php } ?>
+
+                <?php if (estConnecte()) { ?>
+                <!-- Bouton vers la page de profil -->
+                <li class="nav-item">
+                    <a
+                        class="nav-link <?php NavClass("afficherPageProfil"); ?>"
+                        href="index.php?action=afficherPageProfil">
+                        Profil
+                    </a>
+                </li>
+                <!-- Bouton vers la page de déconnexion -->
+                <li class="nav-item">
+                    <a
+                        class="nav-link <?php NavClass("deconnecter"); ?>"
+                        href="index.php?action=deconnecter">
+                        Déconnexion
+                    </a>
+                </li>
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -47,5 +95,11 @@ function NavClassDefault()
     if (!isset($_GET['action'])) {
         echo ' active ';
     }
+}
+
+// Vérifie si l'utilisateur est connecté en vérifiant la présence de la variable de session
+function estConnecte()
+{
+    return isset($_SESSION['utilisateur']);
 }
 ?>
