@@ -1,0 +1,26 @@
+<?php
+
+function bloquerSiNonConnecte()
+{
+    // Vérifier si l'utilisateur est connecté
+    if (!isset($_SESSION['utilisateur'])) {
+        // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+        header('Location: index.php?action=afficherPageConnexion');
+        exit;
+    }
+}
+
+function retournerMessageErreurSession($erreurs, $redirection)
+{
+    $_SESSION['erreurs'] = $erreurs;
+    header('Location: index.php?action=' . $redirection);
+    exit;
+}
+
+function retournerMessageErreurAJAX($erreurs)
+{
+    $erreursHTML = implode("<br>", $erreurs);
+    echo $erreursHTML;
+    http_response_code(400);
+    exit;
+}

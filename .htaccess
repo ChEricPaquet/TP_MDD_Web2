@@ -1,0 +1,12 @@
+RewriteEngine On
+
+#Permettre l'accès au dossier js
+RewriteCond %{REQUEST_URI}  !js
+
+#Permettre l'accès au dossier style
+RewriteCond %{REQUEST_URI} !style
+
+RewriteRule (.*) index.php [QSA,L]
+
+php_value upload_max_filesize 50M
+php_value post_max_size 100M
