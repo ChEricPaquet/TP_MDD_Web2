@@ -75,3 +75,32 @@ CREATE TABLE Contient (
     FOREIGN KEY (id_carte) REFERENCES Carte(id_carte),
     FOREIGN KEY (id_deck) REFERENCES Deck(id_deck)
 );
+
+INSERT INTO Cartes (nom, image, description)
+VALUES
+-- Troupes
+('Chevalier', 'Chevalier.png', 'Unité robuste à faible coût, idéale pour défendre.'),
+('Archeres', 'Archeres.png', 'Deux archères rapides qui attaquent à distance.'),
+('ArcherMagique', 'ArcherMagique.png', 'Un Archer faible avec une grande portée et une fleche qui pénetre tout'),
+('ArcX', 'ArcX.png', 'batiment qui tire rapidement sur les cartes terraines'),
+('ArmeeDeSquelettes', 'ArmeeDeSquelettes.png', 'Une armée de squelettes'),
+('Ballon', 'Ballon.png', 'Un ballon faible, capable de faire des immense degats au structure'),
+('Barbares', 'Barbares.png', '5 barbares prets a ce battre'),
+('BarbaresDElites', 'BarbaresDElites.png', '2 barbares rapides et férocent'),
+('BebeDragon', 'BebeDragon.png', 'Un dragon volant fesant un bon dgat de zone'),
+('BelierDeCombat', 'BelierDeCombat.png', 'Un belier foncant vers le batiment le plus proche')
+('Berserker','Berserker.png','Une jeune fille attaquant tres vite')
+('Bombardier','Bombardier.png', 'Un squelette avec du degat de zone sur les troupes terrestres'),
+('BouleDeFeu', 'BouleDeFeu.png', 'Beaucoup de dégat dans une petite zone'),
+('BouleDeNeige','BouleDeNeige.png', 'Pousse les troupes et les rallentits'),
+('Bouliste','Bouliste.png', 'Roule une boule dans la foulle'),
+('Bourreau', 'Bourreau.png', 'Bourre'),
+('Buche', 'Buche.png', 'Roulle une buche et repousse les troupes dans le chemin'),
+('Bucheron','Bucheron.png', 'Jete une rage lorsquil meurt'),
+('BuissonSuspicieux', 'BuissonSuspicieux.png','2 goblin cachés qui se dirige vers la tour'),
+('CabaneAGoblins', 'CabaneAGobelins.png', 'Un batiment qui invoque des goblins lorsquil est approché'),
+('CabaneDeBarbares','CabaneDeBarbares','Un batiment qui invoque des barabres lorsquil est approché'),
+('CageGobeline','CageGobeline.png','Un goblin dans une cage'),
+('Cannon','Cannon.png','Un batiment qui tire sur les troupes terrestres')
+
+

@@ -13,7 +13,9 @@ ob_start();
 ?>
 
 <h1 class="text-center">Accueil</h1>
-<h2 class="text-center">This is why we clash</h2>
+<h2 class="text-center">Clash Royal deck rater est un site triple X où vous pourrez commenter les decks créé par les autres utilisateurs du site, vous pouvez également rejoindre des clans pour pouvoir chatter en privée avec les autres membres de votre clan !</h2>
+<h3 class="text-center">This is why we clash</h3>
+
 
 <?php
 // Récupération de tout le contenu généré depuis le début de la mise en tampon.
