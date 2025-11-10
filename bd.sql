@@ -38,12 +38,3 @@ CREATE Table `role` (
     `role` varchar(10),
     PRIMARY KEY(`id_role`)
 )
-
-
-INSERT INTO `utilisateurs` (`id`, `nom`, `mot_de_passe`) VALUES
-    (1, 'user1', '$2y$10$OGiU3BxumEMXlaaBkWFggOJk5FqsgnLn3S7E5TrJJ.eo.CkGCVa4.'), -- Mot de passe: 123456
-
-INSERT INTO `marques` (`nom`) VALUES ('Toyota');
-
-
-INSERT INTO `modeles` (`nom`, `marques_id`) VALUES ('Corolla', 1);
