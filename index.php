@@ -1,37 +1,60 @@
 <?php
-// Le fichier index.php joue le rôle de point d'entrée (routeur) de l'application.
-// Ainsi, toutes les requêtes HTTP doivent passer par ce fichier.
-// Il analyse le paramètre "action" de l'URL et appelle le fonction appropriée dans le contrôleur.
+// La première chose qu'on fait à chaque requête est de démarrer la session.
+// Ainsi, on peut accéder aux variables de session dans tout le site.
+session_start();
 
-
-// Chargement des contrôleurs
 require_once 'controleur/controleur.php';
+require_once 'controleur/controleurUtilisateurs.php';
+require_once 'controleur/controleurUtils.php';
 
 try {
     if (!isset($_GET['action'])) {
-        // Si aucune action n'est spécifié, affiche la page d'accueil
-        // Ex. d'URL : index.php
         afficherPageAccueil();
         return;
     }
 
-    // Vérification de l'action demandée
     switch ($_GET['action']) {
         case 'afficherPageAccueil':
             afficherPageAccueil();
             break;
+        case 'afficherPageConnexion':
+            afficherPageConnexion();
+            break;
+        case 'afficherPageInscription':
+            afficherPageInscription();
+            break;
+        case 'afficherPageProfil':
+            afficherPageProfil();
+            break;
+        case 'connecter':
+            connecter();
+            break;
+        case 'inscrire':
+            inscrire();
+            break;
+        case 'deconnecter':
+            deconnecter();
+            break;
+        case 'afficherDecksBuilder':
+            afficherDecksBuilder();
+            break;
+        case 'afficherClan':
+            afficherClan();
+            break;
         default:
-            // Si l'action demandée n'est pas reconnue, on lance une exception
+            http_response_code(404);
             throw new Exception('404 : Action non supportée');
     }
 } catch (PDOException $e) {
-    // En cas d'erreur de base de données, on affiche le message d'erreur
-    // dans la vue d'erreur
+    if (http_response_code() < 400) {
+        http_response_code(500);
+    }
     $msgErreur = $e->getMessage();
     require 'vue/erreur.php';
 } catch (Exception $ex) {
-    // En cas d'erreur générale, on affiche le message d'erreur
-    // dans la vue d'erreur
+    if (http_response_code() < 400) {
+        http_response_code(500);
+    }
     $msgErreur = $ex->getMessage();
     require 'vue/erreur.php';
 }

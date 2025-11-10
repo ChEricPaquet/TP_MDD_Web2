@@ -22,7 +22,7 @@
 </head>
 
 <body class="container-fluid vh-100 p-0 m-0 row flex-column">
-    <header class="bg-dark">
+    <header class="bg-primary">
         <?php
         // Chargement du menu de navigation.
         // Le menu est responsable de l'affichage des liens de navigation.
