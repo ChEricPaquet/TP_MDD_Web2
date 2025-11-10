@@ -26,13 +26,16 @@
             </div>
         </div>
 
-        <div class="mb-3">
-            <label for="motDePasse" class="form-label">Mot de passe&nbsp;:</label>
-            <input type="password" class="form-control" id="motDePasse" placeholder="Entrez votre mot de passe" name="motDePasse" required minlength="6" maxlength="45">
-            <div class="invalid-feedback">
-                Le mot de passe est requis et doit contenir entre 6 et 45 caractères.
-            </div>
-        </div>
+       <div class="mb-3">
+    <label for="motDePasse" class="form-label">Mot de passe :</label>
+    <input type="password" class="form-control" id="motDePasse" name="motDePasse"
+           pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}"
+           title="Au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
+           required>
+    <div class="invalid-feedback">
+        Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.
+    </div> <!-- aider de ChatGPT -->
+</div>
 
         <div class="mb-3">
             <label for="confirmationMotDePasse" class="form-label">Confirmez le mot de passe&nbsp;:</label>
