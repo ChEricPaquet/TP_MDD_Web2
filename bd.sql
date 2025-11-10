@@ -75,3 +75,4 @@ CREATE TABLE Contient (
     FOREIGN KEY (id_carte) REFERENCES Carte(id_carte),
     FOREIGN KEY (id_deck) REFERENCES Deck(id_deck)
 );
+
