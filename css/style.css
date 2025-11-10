@@ -1,0 +1,14 @@
+@media (max-width: 576px) {
+  body {
+    font-size: 14px;
+  }
+
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stage {
+    grid-template-columns: 1fr;
+  }
+}
