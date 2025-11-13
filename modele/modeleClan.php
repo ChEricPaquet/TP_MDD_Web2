@@ -22,7 +22,7 @@ class modeleClan
         public static function suprimerUtilisateurClan($idUtilisateur, $idClan)
     {
         $connexion = BD::ObtenirConnexion();
-       
+        
         $req = $connexion->prepare(
             "DELETE FROM clan WHERE idClan = :idClan"
         );

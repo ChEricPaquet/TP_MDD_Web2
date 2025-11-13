@@ -4,6 +4,12 @@ CREATE DATABASE IF NOT EXISTS `TP_MDD_ClashRoyale`
 
 USE `exercice_fichier_bd`;
 SET default_storage_engine=InnoDB;
+CREATE DATABASE IF NOT EXISTS `TP_MDD_ClashRoyale`
+    DEFAULT CHARACTER SET utf8mb4
+    COLLATE utf8mb4_0900_ai_ci;
+
+USE `TP_MDD_ClashRoyale`;
+SET default_storage_engine=InnoDB;
 CREATE TABLE Clans (
     id_clan INT AUTO_INCREMENT,
     nom_clan VARCHAR(15) NOT NULL,
@@ -59,7 +65,7 @@ CREATE TABLE Carte (
 );
 
 CREATE TABLE UtilisateurClan (
-    id_clan INT,
+    id_clan INT AUTO_INCREMENT,
     id INT,
     id_role INT,
     PRIMARY KEY (id_clan, id, id_role),
@@ -68,7 +74,7 @@ CREATE TABLE UtilisateurClan (
     FOREIGN KEY (id_role) REFERENCES Role(id_role)
 );
 
-CREATE TABLE Contient (
+CREATE TABLE CarteDeck (
     id_carte INT,
     id_deck INT,
     PRIMARY KEY (id_carte, id_deck),
@@ -76,31 +82,38 @@ CREATE TABLE Contient (
     FOREIGN KEY (id_deck) REFERENCES Deck(id_deck)
 );
 
-INSERT INTO Cartes (nom, image, description)
+INSERT INTO Rarete (type)
+VALUES 
+("Commune"),
+("Rare"),
+("Épique"),
+("Légendaire"),
+("Champion")
+
+INSERT INTO Carte (nom, image, description, id_rarete)
 VALUES
 -- Troupes
-('Chevalier', 'Chevalier.png', 'Unité robuste à faible coût, idéale pour défendre.'),
-('Archeres', 'Archeres.png', 'Deux archères rapides qui attaquent à distance.'),
-('ArcherMagique', 'ArcherMagique.png', 'Un Archer faible avec une grande portée et une fleche qui pénetre tout'),
-('ArcX', 'ArcX.png', 'batiment qui tire rapidement sur les cartes terraines'),
-('ArmeeDeSquelettes', 'ArmeeDeSquelettes.png', 'Une armée de squelettes'),
-('Ballon', 'Ballon.png', 'Un ballon faible, capable de faire des immense degats au structure'),
-('Barbares', 'Barbares.png', '5 barbares prets a ce battre'),
-('BarbaresDElites', 'BarbaresDElites.png', '2 barbares rapides et férocent'),
-('BebeDragon', 'BebeDragon.png', 'Un dragon volant fesant un bon dgat de zone'),
-('BelierDeCombat', 'BelierDeCombat.png', 'Un belier foncant vers le batiment le plus proche')
-('Berserker','Berserker.png','Une jeune fille attaquant tres vite')
-('Bombardier','Bombardier.png', 'Un squelette avec du degat de zone sur les troupes terrestres'),
-('BouleDeFeu', 'BouleDeFeu.png', 'Beaucoup de dégat dans une petite zone'),
-('BouleDeNeige','BouleDeNeige.png', 'Pousse les troupes et les rallentits'),
-('Bouliste','Bouliste.png', 'Roule une boule dans la foulle'),
-('Bourreau', 'Bourreau.png', 'Bourre'),
-('Buche', 'Buche.png', 'Roulle une buche et repousse les troupes dans le chemin'),
-('Bucheron','Bucheron.png', 'Jete une rage lorsquil meurt'),
-('BuissonSuspicieux', 'BuissonSuspicieux.png','2 goblin cachés qui se dirige vers la tour'),
-('CabaneAGoblins', 'CabaneAGobelins.png', 'Un batiment qui invoque des goblins lorsquil est approché'),
-('CabaneDeBarbares','CabaneDeBarbares','Un batiment qui invoque des barabres lorsquil est approché'),
-('CageGobeline','CageGobeline.png','Un goblin dans une cage'),
-('Cannon','Cannon.png','Un batiment qui tire sur les troupes terrestres')
-
+('Chevalier', 'Chevalier.png', 'Unité robuste à faible coût, idéale pour défendre.', 1),
+('Archeres', 'Archeres.png', 'Deux archères rapides qui attaquent à distance.', 1),
+('Archer Magique', 'ArcherMagique.png', 'Un Archer faible avec une grande portée et une flèche qui pénètre tout.', 4),
+('Arc X', 'ArcX.png', 'Bâtiment qui tire rapidement sur les cartes terrestres.', 3),
+('Armee De Squelettes', 'ArmeeDeSquelettes.png', 'Une armée de squelettes.', 1),
+('Ballon', 'Ballon.png', 'Un ballon faible, capable de faire d’immenses dégâts aux structures.', 3),
+('Barbares', 'Barbares.png', '5 barbares prêts à se battre.', 1),
+('Barbares Delites', 'BarbaresDElites.png', '2 barbares rapides et féroces.', 2),
+('Bébé Dragon', 'BebeDragon.png', 'Un dragon volant faisant de bons dégâts de zone.', 3),
+('Bélier De Combat', 'BelierDeCombat.png', 'Un bélier fonçant vers le bâtiment le plus proche.', 2),
+('Berserker', 'Berserker.png', 'Une jeune fille attaquant très vite.', 2),
+('Bombardier', 'Bombardier.png', 'Un squelette avec des dégâts de zone sur les troupes terrestres.', 1),
+('Boule De Feu', 'BouleDeFeu.png', 'Beaucoup de dégâts dans une petite zone.', 2),
+('Boule De Neige', 'BouleDeNeige.png', 'Pousse les troupes et les ralentit.', 1),
+('Bouliste', 'Bouliste.png', 'Lance une boule qui traverse les ennemis.', 3),
+('Bourreau', 'Bourreau.png', 'Lance une hache tournoyante qui revient.', 3),
+('Buche', 'Buche.png', 'Fait rouler une bûche qui repousse les troupes sur son passage.', 4),
+('Bucheron', 'Bucheron.png', 'Lâche une rage lorsqu’il meurt.', 4),
+('Buisson Suspicieux', 'BuissonSuspicieux.png', 'Deux gobelins cachés qui se dirigent vers la tour.', 1),
+('Cabane à Gobelins', 'CabaneAGobelins.png', 'Un bâtiment qui invoque des gobelins lorsqu’il est approché.', 2),
+('Cabane De Barbares', 'CabaneDeBarbares.png', 'Un bâtiment qui invoque des barbares lorsqu’il est approché.', 2),
+('Cage Gobeline', 'CageGobeline.png', 'Un gobelin dans une cage.', 2),
+('Cannon', 'Cannon.png', 'Un bâtiment qui tire sur les troupes terrestres.', 1);
 

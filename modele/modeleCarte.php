@@ -20,7 +20,7 @@ class ModeleCarte
 
     public static function ObtenirTout()
     {
-                $connection = BD::ObtenirConnexion();
+        $connection = BD::ObtenirConnexion();
 
         $req = $connection->prepare(
             "SELECT * FROM carte"
