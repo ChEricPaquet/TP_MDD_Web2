@@ -31,7 +31,7 @@
         require_once 'vue/menu.php';
         ?>
     </header>
-    <main class="pt-2 flex-fill">
+    <main class="pt-2 flex-fill bg-light">
         <?php
         // Zone de contenu principal.
         // Affichage du contenu spécifique à chaque page.

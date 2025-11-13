@@ -6,6 +6,9 @@ RewriteCond %{REQUEST_URI}  !js
 #Permettre l'accès au dossier style
 RewriteCond %{REQUEST_URI} !style
 
+#Permettre l'accès au dossier Images
+RewriteCond %{REQUEST_URI} !Images
+
 RewriteRule (.*) index.php [QSA,L]
 
 php_value upload_max_filesize 50M

@@ -29,8 +29,8 @@ try {
         case 'connecter':
             connecter();
             break;
-        case 'inscrire':
-            inscrire();
+        case 'inscription':
+            inscription();
             break;
         case 'deconnecter':
             deconnecter();

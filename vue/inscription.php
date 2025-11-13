@@ -17,7 +17,7 @@
     }
     ?>
 
-    <form method="post" action="index.php?action=inscrire" class="needs-validation" novalidate>
+    <form method="post" action="index.php?action=inscription" class="needs-validation" novalidate>
         <div class="mb-3 mt-3">
             <label for="nom" class="form-label">Nom d'utilisateur&nbsp;:</label>
             <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom d'utilisateur" name="nom" required minlength="3" maxlength="45">
@@ -26,12 +26,12 @@
             </div>
         </div>
 
-       <div class="mb-3">
+        <div class="mb-3">
     <label for="motDePasse" class="form-label">Mot de passe :</label>
-    <input type="password" class="form-control" id="motDePasse" name="motDePasse"
-           pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}"
-           title="Au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
-           required>
+    <input type="password" class="form-control" id="motDePasse" name="motDePasse" minlength="8" maxlength="50"
+            placeholder="Entrez votre mot de passe"
+        pattern="[A-Za-z\d@$!%*?&_]{8,}"
+            required>
     <div class="invalid-feedback">
         Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.
     </div> <!-- aider de ChatGPT -->

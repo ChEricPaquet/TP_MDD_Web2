@@ -1,6 +1,7 @@
 <?php
 require_once "modele/bd.php";
 
+
 class ModeleCarte
 {
     public static function ObtenirParId($id)
@@ -8,10 +9,10 @@ class ModeleCarte
         $connection = BD::ObtenirConnexion();
 
         $req = $connection->prepare(
-            "SELECT * FROM carte WHERE id_carte = :id_carte"
+            "SELECT * FROM Carte WHERE id_carte = :id_carte"
         );
 
-        $req->bindParam('id_carte', $id);
+        $req->bindParam(':id_carte', $id);
 
         $req->execute();
 
@@ -23,11 +24,8 @@ class ModeleCarte
         $connection = BD::ObtenirConnexion();
 
         $req = $connection->prepare(
-            "SELECT * FROM carte"
+            "SELECT * FROM Carte"
         );
-
-        $req->bindParam('id_carte', $id);
-
         $req->execute();
 
         return $req;

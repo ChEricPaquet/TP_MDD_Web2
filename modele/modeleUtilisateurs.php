@@ -10,7 +10,7 @@ class ModeleUtilisateurs
 
         // Préparation de la requête SQL
         $req = $connexion->prepare(
-            "INSERT INTO utilisateurs (nom, mot_de_passe) VALUES (:nom, :mot_de_passe)"
+            "INSERT INTO Utilisateurs (nom, mot_de_passe) VALUES (:nom, :mot_de_passe)"
         );
 
         // Liaison des paramètres nommés avec les variables PHP
@@ -31,7 +31,8 @@ class ModeleUtilisateurs
 
         // Préparation de la requête SQL avec un paramètre nommé
         $req = $connexion->prepare(
-            "SELECT * FROM utilisateurs WHERE nom = :nom"
+            "SELECT * FROM Utilisateurs WHERE nom = :nom"
+            
         );
 
         // Liaison des paramètres nommés avec les variables PHP

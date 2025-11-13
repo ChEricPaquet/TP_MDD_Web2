@@ -14,10 +14,10 @@ function afficherPageInscription()
 function afficherPageProfil()
 {
     bloquerSiNonConnecte();
-
     // Afficher la page de profil
     require 'vue/profil.php';
 }
+
 
 function validerDonneesAuthentification()
 {
@@ -25,8 +25,8 @@ function validerDonneesAuthentification()
     if (empty($_POST['nom']) || mb_strlen($_POST['nom']) < 3 || mb_strlen($_POST['nom']) > 45) {
         $erreurs[] = 'Le nom d\'utilisateur est requis et doit contenir entre 3 et 45 caractères.';
     }
-    if (empty($_POST['motDePasse']) || mb_strlen($_POST['motDePasse']) < 6 || mb_strlen($_POST['motDePasse']) > 45) {
-        $erreurs[] = 'Le mot de passe est requis et doit contenir entre 6 et 45 caractères.';
+    if (empty($_POST['motDePasse']) || mb_strlen($_POST['motDePasse']) < 6 || mb_strlen($_POST['motDePasse']) > 45 || !preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_])(?!.*\s).{8,}$/", $_POST['motDePasse'])) {
+        $erreurs[] = 'Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.';
     }
     return $erreurs;
 }
@@ -53,7 +53,7 @@ function connecter()
     require 'vue/connexionSucces.php';
 }
 
-function inscrire()
+function inscription()
 {
     $erreurs = validerDonneesAuthentification();
     if (!empty($erreurs)) {

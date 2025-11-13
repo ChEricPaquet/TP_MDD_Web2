@@ -12,3 +12,12 @@
     grid-template-columns: 1fr;
   }
 } /* écrit par ChatGPT */
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.card-title {
+  color: #333;
+}
