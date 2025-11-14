@@ -19,7 +19,7 @@ class modeleClan
         return $connexion->lastInsertId();
     }
 
-    public static function suprimerUtilisateurClan($idUtilisateur, $idClan)
+    public static function supprimerUtilisateurClan($idUtilisateur, $idClan)
     {
         $connexion = BD::ObtenirConnexion();
         
@@ -48,6 +48,20 @@ class modeleClan
         $req->execute();
 
         return $connexion->lastInsertId();
+    }
+
+
+    public static function supprimerClan($idClan)
+    {
+        $connexion = BD::ObtenirConnexion();
+        
+        $req = $connexion->prepare(
+            "DELETE FROM Clan WHERE id_clan = :idClan"
+        );
+
+        $req->bindParam(':idClan', $idClan);
+
+        $req->execute();
     }
 }
 ?>
