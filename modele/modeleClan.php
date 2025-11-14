@@ -19,15 +19,35 @@ class modeleClan
         return $connexion->lastInsertId();
     }
 
-        public static function suprimerUtilisateurClan($idUtilisateur, $idClan)
+    public static function suprimerUtilisateurClan($idUtilisateur, $idClan)
     {
         $connexion = BD::ObtenirConnexion();
         
         $req = $connexion->prepare(
-            "DELETE FROM clan WHERE idClan = :idClan"
+            "DELETE FROM UtilisateurClan WHERE id_clan = :idClan AND id = :idUtilisateur"
         );
 
+        $req->bindParam(':idClan', $idClan);
+        $req->bindParam(':idUtilisateur', $idUtilisateur);
+
+
         $req->execute();
+    }
+
+    public static function ajouterClan($nom,$description)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+            "INSERT INTO Clan (nom_clan, description_clan) VALUES (nom_clan :nom_clan,description_clan :description_clan)"
+        );
+
+        $req->bindParam(':nom_clan', $nom);
+        $req->bindParam(':description_clan', $description);
+
+        $req->execute();
+
+        return $connexion->lastInsertId();
     }
 }
 ?>
