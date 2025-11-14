@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Navigation principale">
+<nav class="navbar navbar-expand-sm bg-blue-900" aria-label="Navigation principale">
     <div class="container">
         <!-- Bouton hamburger pour les petits écrans -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">

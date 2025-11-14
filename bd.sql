@@ -5,6 +5,7 @@ CREATE DATABASE IF NOT EXISTS `TP_MDD_ClashRoyale`
 
 USE `TP_MDD_ClashRoyale`;
 SET default_storage_engine=InnoDB;
+
 CREATE TABLE Clans (
     id_clan INT AUTO_INCREMENT,
     nom_clan VARCHAR(15) NOT NULL,

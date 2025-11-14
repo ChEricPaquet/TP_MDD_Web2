@@ -1,23 +1,70 @@
-@media (max-width: 576px) {
-  body {
-    font-size: 14px;
-  }
-
-  .header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .stage {
-    grid-template-columns: 1fr;
-  }
-} /* écrit par ChatGPT */
-
-.card:hover {
-  transform: translateY(-5px);
-  transition: 0.3s ease;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+/* General body and background */
+body, main {
+    font-family: 'Luckiest Guy', cursive;
+    color: white;
+    background-image: url("../Images/Autres/Background.jpg");
+    background-repeat: repeat;
+    background-size: auto;
+    background-attachment: fixed;
 }
-.card-title {
-  color: #333;
+
+/* Container styling */
+#tableau-carte {
+    border-radius: 20px;
+    border: 2px solid rgba(0, 110, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 140, 255, 0.7);
+    padding: 20px;
+}
+
+/* Card styling */
+#tableau-carte .card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: white !important;
+    text-shadow: 0 0 4px black;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 16px; /* Default size */
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Card hover animation */
+#tableau-carte .card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Image hover effect */
+#tableau-carte .card img:hover {
+    filter: brightness(1.15);
+}
+
+/* Card titles */
+#tableau-carte .card-title {
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #tableau-carte .card {
+        font-size: 14px !important;
+    }
+    #tableau-carte .card-title {
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    #tableau-carte .card {
+        font-size: 13px !important;
+    }
+    #tableau-carte .card-title {
+        font-size: 14px !important;
+    }
+}
+
+
+.bg-blue-900 {
+    background-color: #0c3b79;
 }

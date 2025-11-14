@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -22,7 +24,7 @@
     </title>
 </head>
 
-<body class="container-fluid vh-100 p-0 m-0 row flex-column">
+<body class="d-flex flex-column min-vh-100 p-0 m-0">
     <header class="bg-primary">
         <?php
         // Chargement du menu de navigation.
