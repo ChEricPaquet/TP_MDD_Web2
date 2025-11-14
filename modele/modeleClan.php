@@ -55,13 +55,22 @@ class modeleClan
     {
         $connexion = BD::ObtenirConnexion();
         
-        $req = $connexion->prepare(
+        $req1 = $connexion->prepare(
             "DELETE FROM Clan WHERE id_clan = :idClan"
+            
         );
 
-        $req->bindParam(':idClan', $idClan);
+        $req1->bindParam(':idClan', $idClan);
 
-        $req->execute();
+        $req1->execute();
+
+        $req2 = $connexion->prepare(
+            "DELETE FROM UtilisateurClan WHERE id_clan = :idClan"
+        );
+
+        $req2->bindParam(':idClan', $idClan);
+
+        $req2->execute();
     }
 }
 ?>
