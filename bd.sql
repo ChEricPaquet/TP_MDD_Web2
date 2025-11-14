@@ -192,3 +192,23 @@ VALUES
 ('Zap','Zap.png','Sort qui inflige des dégâts électriques de zone et étourdit les ennemis', 1), 
 ('Zappy','Zappy.png','Bâtiment qui tire des éclairs sur les ennemis proches', 2)
 
+INSERT INTO Utilisateurs (nom, mot_de_passe)
+VALUES
+('Alice Tremblay', 'At!92xQm7'),
+('Benoît Gagnon', 'Bg#74LmZp'),
+('Clara Dubois', 'Cd*58VrNt'),
+('David Lavoie', 'Dl@63QwXe'),
+('Élodie Fortin', 'Ef!81ZkRt'),
+('François Moreau', 'Fm#97YtLp'),
+('Gabrielle Roy', 'Gr*46PwMn'),
+('Hugo Boucher', 'Hb@55KsQz'),
+('Isabelle Caron', 'Ic!72XvJr'),
+('Julien Martel', 'Jm#83NtWq')
+
+INSERT INTO Clans (nom_clan, description_clan)
+VALUES
+('Les Loups Argentés', 'Un clan de guerriers rusés, connus pour leur rapidité et leur esprit d’équipe.'),
+('Dragons Écarlates', 'Clan fier et puissant, spécialisé dans la maîtrise du feu et la force brute.'),
+('Ombres Silencieuses', 'Assassins discrets et stratèges, experts en infiltration et en espionnage.'),
+('Gardiens de l’Aube', 'Protecteurs des terres sacrées, porteurs de lumière et défenseurs des innocents.'),
+('Corbeaux Mystiques', 'Un clan mystérieux, lié aux arts occultes et aux secrets anciens.')
