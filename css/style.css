@@ -142,7 +142,6 @@ h3.text-center {
         0 0 25px rgba(0, 170, 255, 0.6);
 }
 
-
 body {
     background:
         linear-gradient(rgba(0, 40, 120, 0.7), rgba(0, 40, 120, 0.7)),
@@ -153,5 +152,11 @@ body {
     color: white;
     margin: 0;
     padding: 0;
-} /*Fait par Chaaaaaaat*\
+}
+
+.header-img, .banner-img {
+    display: block;
+    margin: 20px auto;
+    width: 250px;
+}
 
