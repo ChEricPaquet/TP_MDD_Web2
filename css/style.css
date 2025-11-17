@@ -97,9 +97,6 @@ footer {
     stroke: url(#ffffff);
     padding: 10px;
 }
-/* -------------------------- */
-/* TITRE PRINCIPAL (H1) */
-/* -------------------------- */
 
 h1.text-center {
     font-family: 'Luckiest Guy', cursive;
@@ -115,11 +112,6 @@ h1.text-center {
         0 0 35px rgba(0, 120, 255, 0.8);
 }
 
-
-/* -------------------------- */
-/* SOUS-TITRE (H2) */
-/* -------------------------- */
-
 h2.text-center {
     font-family: 'Luckiest Guy', cursive;
     font-size: 1.7rem;
@@ -130,16 +122,11 @@ h2.text-center {
 
     color: #ffea85; /* jaune doux */
 
-    /* Glow jaune */
     text-shadow:
         0 0 8px rgba(255, 230, 120, 0.7),
         0 0 20px rgba(255, 230, 120, 0.4);
 }
 
-
-/* -------------------------- */
-/* PHRASE SIGNATURE (H3) */
-/* -------------------------- */
 
 h3.text-center {
     font-family: 'Luckiest Guy', cursive;
@@ -156,10 +143,6 @@ h3.text-center {
 }
 
 
-/* -------------------------- */
-/* FOND DE PAGE */
-/* -------------------------- */
-
 body {
     background:
         linear-gradient(rgba(0, 40, 120, 0.7), rgba(0, 40, 120, 0.7)),
@@ -170,5 +153,5 @@ body {
     color: white;
     margin: 0;
     padding: 0;
-}
+} /*Fait par Chaaaaaaat*\
 
