@@ -2,9 +2,9 @@
 
 <?php ob_start(); ?>
 
-<h1 class="text-center">Créer un compte</h1>
+<h1 class="text-center big-goofy-title">Créer un compte</h1>
 
-<div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+<div class="col-sm-10 col-md-8 col-lg-6 mx-auto bg-blue-900 p-4 rounded-3">
     <?php
     if (isset($_SESSION['erreurs'])) {
         // Récupère les erreurs et les formate pour l'affichage

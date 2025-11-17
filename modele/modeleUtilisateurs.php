@@ -4,13 +4,13 @@ require_once "modele/bd.php";
 class ModeleUtilisateurs
 {
     // Permet d'ajouter un utilisateur dans la base de données
-    public static function ajouterUtilisateur($nom, $mot_de_passe)
+    public static function AjouterUtilisateur($nom, $mot_de_passe)
     {
         $connexion = BD::ObtenirConnexion();
 
         // Préparation de la requête SQL
         $req = $connexion->prepare(
-            "INSERT INTO Utilisateurs (nom, mot_de_passe) VALUES (:nom, :mot_de_passe)"
+            "INSERT INTO Utilisateur (nom, mot_de_passe) VALUES (:nom, :mot_de_passe)"
         );
 
         // Liaison des paramètres nommés avec les variables PHP
@@ -25,13 +25,13 @@ class ModeleUtilisateurs
     }
 
     // Permet d'obtenir un utilisateur par son nom
-    public static function obtenirUtilisateur($nom)
+    public static function ObtenirUtilisateur($nom)
     {
         $connexion = BD::ObtenirConnexion();
 
         // Préparation de la requête SQL avec un paramètre nommé
         $req = $connexion->prepare(
-            "SELECT * FROM Utilisateurs WHERE nom = :nom"
+            "SELECT * FROM Utilisateur WHERE nom = :nom"
             
         );
 

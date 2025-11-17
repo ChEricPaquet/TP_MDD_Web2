@@ -24,7 +24,7 @@
                     <a
                         class="nav-link <?php NavClass("afficherDecksBuilder"); ?>"
                         href="index.php?action=afficherDecksBuilder">
-                        Decks Builder
+                        Créateur de Decks
                     </a>
                 </li>
                 <li class="nav-item">

@@ -8,6 +8,28 @@ body, main {
     background-attachment: fixed;
 }
 
+header {
+    font-family: 'Luckiest Guy', cursive;
+}
+.nav-link.active {
+    color: #ffffff !important;        /* text color */
+}
+
+main {
+    border: 2px solid rgba(0, 110, 255, 0.4);
+    padding-bottom: 20px;
+}
+footer {
+    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(12, 59, 121, 0.8);
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+}
 /* Container styling */
 #tableau-carte {
     border-radius: 20px;
@@ -18,10 +40,10 @@ body, main {
 
 /* Card styling */
 #tableau-carte .card {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    color: white !important;
+    background: transparent  ;
+    border: none  ;
+    box-shadow: none  ;
+    color: white  ;
     text-shadow: 0 0 4px black;
     font-family: 'Luckiest Guy', cursive;
     font-size: 16px; /* Default size */
@@ -48,19 +70,19 @@ body, main {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     #tableau-carte .card {
-        font-size: 14px !important;
+        font-size: 14px 0;
     }
     #tableau-carte .card-title {
-        font-size: 16px !important;
+        font-size: 16px  ;
     }
 }
 
 @media (max-width: 576px) {
     #tableau-carte .card {
-        font-size: 13px !important;
+        font-size: 13px  ;
     }
     #tableau-carte .card-title {
-        font-size: 14px !important;
+        font-size: 14px  ;
     }
 }
 
@@ -68,3 +90,11 @@ body, main {
 .bg-blue-900 {
     background-color: #0c3b79;
 }
+
+.big-goofy-title {
+    font-size: 5rem;
+    text-shadow: 2px 2px 8px rgb(2, 29, 117);
+    stroke: url(#ffffff);
+    padding: 10px;
+}
+

@@ -1,15 +1,15 @@
 <?php
 require_once "modele/bd.php";
 
-class modeleCommentaire{
-    public static function AjouterCommentaire($id_Utilisateur,$texte,$id_Deck){
+class ModeleCommentaire{
+    public static function AjouterCommentaire($Id_Utilisateur,$texte,$id_Deck){
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-                "INSERT INTO Commentaire (id_utilisateur, texte, id_deck) VALUES (id_utilisateur :idUtilisateur, texte :texte, id_deck :idDeck)"
+                "INSERT INTO Commentaire (Id_Utilisateur, texte, Id_Deck) VALUES (Id_Utilisateur :idUtilisateur, texte :texte, Id_Deck :idDeck)"
         );
 
-        $req->bindParam(':idUtilisateur', $id_Utilisateur);
+        $req->bindParam(':idUtilisateur', $Id_Utilisateur);
         $req->bindParam(':texte', $texte);
         $req->bindParam(':idDeck', $id_Deck);
         
@@ -18,6 +18,32 @@ class modeleCommentaire{
         $req->execute();
 
         return $connexion->lastInsertId();
+    }
+
+    public static function ObtenirCommentairesParDeck($id_Deck){
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+                "SELECT * FROM Commentaire WHERE Id_Deck = :idDeck"
+        );
+
+        $req->bindParam(':idDeck', $id_Deck);
+
+        $req->execute();
+
+        return $req;
+    }
+
+    public static function SupprimerCommentaire($id_Commentaire){
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+                "DELETE FROM Commentaire WHERE Id_Commentaire = :idCommentaire"
+        );
+
+        $req->bindParam(':idCommentaire', $id_Commentaire);
+
+        $req->execute();
     }
 }
 ?>

@@ -43,7 +43,7 @@
         ?>
     </main>
     <footer>
-        <p class="container text-center py-2 mt-2 border-top">&copy; 2025 Mon Site</p>
+        <p class="container text-center py-2 mt-2 border-top">&copy; 2025 Clash Royal </p>
     </footer>
 </body>
 

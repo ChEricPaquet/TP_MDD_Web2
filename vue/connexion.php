@@ -2,9 +2,9 @@
 
 <?php ob_start(); ?>
 
-<h1 class="text-center">Connexion à un compte</h1>
+<h1 class="text-center big-goofy-title">Connexion à un compte</h1>
 
-<div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+<div class="col-sm-10 col-md-8 col-lg-6 mx-auto bg-blue-900 p-4 rounded-3">
     <div id="reponse"></div>
 
     <form id="formConnexion" action="index.php?action=connecter" class="needs-validation" novalidate>

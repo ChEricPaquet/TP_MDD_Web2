@@ -9,10 +9,10 @@ class ModeleCarte
         $connection = BD::ObtenirConnexion();
 
         $req = $connection->prepare(
-            "SELECT * FROM Carte WHERE id_carte = :id_carte"
+            "SELECT * FROM Carte WHERE Id_Carte = :Id_Carte"
         );
 
-        $req->bindParam(':id_carte', $id);
+        $req->bindParam(':Id_Carte', $id);
 
         $req->execute();
 
