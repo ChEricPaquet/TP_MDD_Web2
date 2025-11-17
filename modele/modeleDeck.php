@@ -45,7 +45,80 @@ class ModeleDeck
         $req->bindParam(':id_deck', $idDeck);
 
         $req->execute();
-    }   
-}
+    }  
 
+    public static function NombreCarte($idDeck)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+                "SELECT COUNT(Id_Carte) AS nb FROM CarteDeck WHERE Id_Deck = :idDeck"
+            );
+
+        $req->bindParam(':idDeck', $idDeck, PDO::PARAM_INT);
+
+        $req->execute();
+        
+        if($req->fetchColumn() == 8)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public static function AjouterCarteDeck($idCarte, $idDeck)
+    {
+        if (self::NombreCarte($idDeck) && self::NombreChampion($idCarte, $idDeck))
+        {            
+            $connexion = BD::ObtenirConnexion();
+
+            $req = $connexion->prepare(
+                "INSERT INTO CarteDeck (Id_Carte, Id_Deck) VALUES (:idCarte, :idDeck)"
+            );
+
+            $req->bindParam(':idCarte', $idCarte);
+            $req->bindParam(':idDeck', $idDeck);
+
+            $req->execute();
+
+            return $connexion->lastInsertId();
+        }
+        return false;
+    }
+
+    public static function SupprimerCarteDeck($idCarte, $idDeck)
+    {                
+        $connexion = BD::ObtenirConnexion();
+        $req = $connexion->prepare(
+            "DELETE FROM CarteDeck WHERE Id_Carte = :idCarte AND Id_Deck = :idDeck"
+        );
+
+        $req->bindParam(':idCarte', $idCarte);
+        $req->bindParam(':idDeck', $idDeck);
+
+        $req->execute();
+
+        return $connexion->lastInsertId();
+    }
+    
+    public static function NombreChampion($idCarte, $idDeck)
+    {
+        $connexion = BD::ObtenirConnexion();
+        $req = $connexion->prepare(
+            "SELECT Id_Rarete FROM Carte c JOIN CarteDeck AS cd ON c.Id_Carte = cd.Id_Carte WHERE c.Id_Carte = :idCarte AND Id_Deck = :idDeck"
+            
+        );      
+
+        $req->bindParam(':idCarte', $idCarte);
+        $req->bindParam(':idDeck', $idDeck);
+
+        $req->execute();
+
+        if($req->fetchColumn() == 5)
+        {
+            return false;
+        }
+        return true;
+    }
+}
 ?>
