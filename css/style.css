@@ -1,139 +1,100 @@
-/* -------------------------- */
-/* 1. BASE DU SITE */
-/* -------------------------- */
-
-body {
+/* General body and background */
+body, main {
     font-family: 'Luckiest Guy', cursive;
     color: white;
-    background: 
-        linear-gradient(rgba(0, 50, 150, 0.6), rgba(0, 50, 150, 0.6)),
-        url("../Images/Autres/Background.jpg");
-    background-size: cover;
+    background-image: url("../Images/Autres/Background.jpg");
+    background-repeat: repeat;
+    background-size: auto;
     background-attachment: fixed;
-    background-position: center;
-    margin: 0;
-    padding: 0;
 }
 
-
-/* -------------------------- */
-/* 2. CONTAINER D'ACCUEIL */
-/* -------------------------- */
-
-.accueil-container {
-    background: rgba(255, 255, 255, 0.12);
-    border: 2px solid rgba(70, 130, 255, 0.5);
-    backdrop-filter: blur(6px);
-    border-radius: 25px;
-    padding: 40px;
-    box-shadow: 0 0 20px rgba(0, 140, 255, 0.5);
-    margin: 70px auto;
-    max-width: 900px;
-    text-align: center;
-}
-
-
-/* -------------------------- */
-/* 3. TITRE PRINCIPAL */
-/* -------------------------- */
-
-.big-goofy-title {
-    font-size: 4rem;
-    color: #ffffff;
-    text-shadow: 
-        0 0 10px #006eff,
-        0 0 20px #006eff,
-        2px 2px 8px rgba(0, 0, 0, 0.6);
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-}
-
-/* Version jaune si tu veux un autre style */
-.big-goofy-title.yellow {
-    color: #ffd43b;
-    text-shadow: 
-        0 0 10px #ffef9a,
-        0 0 25px #ffdd55;
-}
-
-
-/* -------------------------- */
-/* 4. TEXTE D'ACCUEIL */
-/* -------------------------- */
-
-.accueil-texte {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-}
-
-
-/* -------------------------- */
-/* 5. BOUTON D'ACCUEIL */
-/* -------------------------- */
-
-.btn-accueil {
-    background: linear-gradient(90deg, #ffd43b, #ffea85);
-    color: #0c3b79;
-    font-size: 1.6rem;
-    padding: 12px 35px;
-    border-radius: 50px;
-    border: none;
+header {
     font-family: 'Luckiest Guy', cursive;
-    box-shadow: 0 0 15px rgba(255, 212, 59, 0.7);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-link.active {
+    color: #ffffff !important;        /* text color */
 }
 
-.btn-accueil:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 25px rgba(255, 212, 59, 1);
+main {
+    border: 2px solid rgba(0, 110, 255, 0.4);
+    padding-bottom: 20px;
+}
+footer {
+    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(12, 59, 121, 0.8);
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+}
+/* Container styling */
+#tableau-carte {
+    border-radius: 20px;
+    border: 2px solid rgba(0, 110, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 140, 255, 0.7);
+    padding: 20px;
+}
+
+/* Card styling */
+#tableau-carte .card {
+    background: transparent  ;
+    border: none  ;
+    box-shadow: none  ;
+    color: white  ;
+    text-shadow: 0 0 4px black;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 16px; /* Default size */
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Card hover animation */
+#tableau-carte .card:hover {
+    transform: scale(1.05);
     cursor: pointer;
 }
 
-
-/* -------------------------- */
-/* 6. CARTES (si tu veux ajouter ton tableau-cartes) */
-/* -------------------------- */
-
-#tableau-carte .card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    border: 2px solid rgba(0, 110, 255, 0.4);
-    box-shadow: 0 0 10px rgba(0, 110, 255, 0.3);
-    padding: 10px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    color: white;
-    text-shadow: 0 0 4px black;
-}
-
-#tableau-carte .card:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.8);
-}
-
-#tableau-carte .card img {
-    border-radius: 10px;
-    transition: filter 0.2s ease;
-}
-
+/* Image hover effect */
 #tableau-carte .card img:hover {
-    filter: brightness(1.25);
+    filter: brightness(1.15);
 }
 
+/* Card titles */
+#tableau-carte .card-title {
+    font-size: 18px;
+    margin-top: 8px;
+}
 
-/* -------------------------- */
-/* 7. RESPONSIVE */
-/* -------------------------- */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #tableau-carte .card {
+        font-size: 14px 0;
+    }
+    #tableau-carte .card-title {
+        font-size: 16px  ;
+    }
+}
 
 @media (max-width: 576px) {
-    .big-goofy-title {
-        font-size: 2.8rem;
+    #tableau-carte .card {
+        font-size: 13px  ;
     }
-    .accueil-texte {
-        font-size: 1.1rem;
+    #tableau-carte .card-title {
+        font-size: 14px  ;
     }
-    .btn-accueil {
-        font-size: 1.2rem;
-        padding: 10px 20px;
-    }
+}
+
+
+.bg-blue-900 {
+    background-color: #0c3b79;
+}
+
+.big-goofy-title {
+    font-size: 5rem;
+    text-shadow: 2px 2px 8px rgb(2, 29, 117);
+    stroke: url(#ffffff);
+    padding: 10px;
 }
 
