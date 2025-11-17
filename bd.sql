@@ -264,3 +264,16 @@ VALUES
 ("Ombres Silencieuses", "Assassins discrets et stratèges, experts en infiltration et en espionnage."),
 ("Gardiens de l’Aube", "Protecteurs des terres sacrées, porteurs de lumière et défenseurs des innocents."),
 ("Liberté du Québec", "Un clan légendaire, lié aux arts patriotiques et aux secrets français québecois.");
+
+INSERT INTO Deck (Id_Visibilite, Id_Utilisateur)
+VALUES
+(3, 1),
+(2, 2),
+(1, 3),
+(3, 4),
+(2, 5),
+(1, 6),
+(3, 7),
+(2, 8),
+(1, 9),
+(3, 10);
