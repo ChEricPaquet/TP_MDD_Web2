@@ -263,4 +263,4 @@ VALUES
 ("Dragons Écarlates", "Clan fier et puissant, spécialisé dans la maîtrise du feu et la force brute."),
 ("Ombres Silencieuses", "Assassins discrets et stratèges, experts en infiltration et en espionnage."),
 ("Gardiens de l’Aube", "Protecteurs des terres sacrées, porteurs de lumière et défenseurs des innocents."),
-("Corbeaux Mystiques", "Un clan mystérieux, lié aux arts occultes et aux secrets anciens.");
+("Liberté du Québec", "Un clan légendaire, lié aux arts patriotiques et aux secrets français québecois.");
