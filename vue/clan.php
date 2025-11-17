@@ -6,15 +6,15 @@ require_once "modele/modeleClan.php";?>
 <script src="js/clan.js"></script>
 
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
-<div class="container bg-blue-900" id="tableau-carte">
+<div class="container bg-blue-900 tableau" id="tableau-clans">
     <div>
         <?php
         $requeteClans = ModeleClan::ObtenirTous();
         while ($clan = $requeteClans->fetch()) {
         ?>
             <div>
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-body text-center">
+                <div class="card h-100 shadow-sm border-0" >
+                    <div data-id="<?=$clan['Id_Clan']?>" class="card-body text-center">
                         <img src="Images/Clans/<?= htmlspecialchars($clan['Id_Clan']) ?>.png"
                             alt="<?= htmlspecialchars($clan['nom_clan']) ?>"
                             style="width: 10%; height: auto;">

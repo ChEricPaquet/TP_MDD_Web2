@@ -88,6 +88,21 @@ class ModeleClan
         return $req;
     }
 
+    public static function ObtenirClanParNom($nomClan)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+            "SELECT * FROM Clan WHERE nom_clan = :nom_clan"
+        );
+
+        $req->bindParam(':nom_clan', $nomClan);
+
+        $req->execute();
+
+        return $req;
+    }
+
     public static function ObtenirTous()
     {
         $connexion = BD::ObtenirConnexion();

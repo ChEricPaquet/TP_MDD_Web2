@@ -41,6 +41,8 @@ try {
         case 'afficherClan':
             afficherClan();
             break;
+        case 'afficherClanDesc':
+            afficherClanDesc();
         default:
             http_response_code(404);
             throw new Exception('404 : Action non supportée');

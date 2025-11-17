@@ -31,15 +31,19 @@ footer {
     padding-top: 10px;
 }
 /* Container styling */
-#tableau-carte {
-    border-radius: 20px;
-    border: 2px solid rgba(0, 110, 255, 0.4);
-    box-shadow: 0 0 15px rgba(0, 140, 255, 0.7);
+#tableau-carte, #tableau-clans {
+
     padding: 20px;
 }
 
+.tableau {
+    border-radius: 20px;
+    border: 2px solid rgba(0, 110, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 140, 255, 0.7);
+}
+
 /* Card styling */
-#tableau-carte .card {
+#tableau-carte .card, #tableau-clans .card {
     background: transparent  ;
     border: none  ;
     box-shadow: none  ;
@@ -51,14 +55,11 @@ footer {
 }
 
 /* Card hover animation */
-#tableau-carte .card:hover {
+#tableau-carte .card:hover, #tableau-clans .card:hover {
     transform: scale(1.05);
     cursor: pointer;
-}
-
-/* Image hover effect */
-#tableau-carte .card img:hover {
     filter: brightness(1.15);
+
 }
 
 /* Card titles */
@@ -98,19 +99,7 @@ footer {
     padding: 10px;
 }
 
-h1.text-center {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 4rem;
-    color: #ffffff;
-    text-align: center;
-    margin-top: 40px;
 
-    /* Glow bleu */
-    text-shadow: 
-        0 0 10px #006eff,
-        0 0 20px #006eff,
-        0 0 35px rgba(0, 120, 255, 0.8);
-}
 
 h2.text-center {
     font-family: 'Luckiest Guy', cursive;
@@ -120,11 +109,11 @@ h2.text-center {
     max-width: 900px;
     margin: 20px auto;
 
-    color: #ffea85; /* jaune doux */
+    color: rgb(255, 195, 10); /* jaune doré */
 
     text-shadow:
-        0 0 8px rgba(255, 230, 120, 0.7),
-        0 0 20px rgba(255, 230, 120, 0.4);
+        0 0 6px rgba(255, 230, 120, 0.7),
+        0 0 12px rgb(74, 27, 1);
 }
 
 
@@ -142,21 +131,12 @@ h3.text-center {
         0 0 25px rgba(0, 170, 255, 0.6);
 }
 
-body {
-    background:
-        linear-gradient(rgba(0, 40, 120, 0.7), rgba(0, 40, 120, 0.7)),
-        url("../Images/Autres/Background.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    color: white;
-    margin: 0;
-    padding: 0;
-}
+
 
 .header-img, .banner-img {
     display: block;
     margin: 20px auto;
-    width: 250px;
+    width:60%;
+
 }
 

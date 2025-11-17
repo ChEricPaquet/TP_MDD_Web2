@@ -8,7 +8,7 @@ require_once "modele/modeleCarte.php";?>
 <script src="js/carte.js"></script>
 
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
-<div class="container py-4 bg-blue-900" id="tableau-carte">
+<div class="container py-4 bg-blue-900 tableau" id="tableau-carte">
     <div class="row g-4">
         <?php
         $requeteCartes = ModeleCarte::ObtenirTout();
