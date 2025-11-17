@@ -11,10 +11,11 @@ $titreOnglet = 'Accueil';
 // On récupère ensuite ce contenu dans la variable $contenu avec ob_get_clean().
 ob_start();
 ?>
-<img src="download(1).jpg" alt="logo du site" class="header-img">
+<img src="Images/download(2).jpg" alt="logo du site" class="header-img">
 <h1 class="text-center">Accueil</h1>
 <h2 class="text-center">Clash Royal deck rater est un site triple X où vous pourrez commenter les decks créé par les autres utilisateurs du site, vous pouvez également rejoindre des clans pour pouvoir chatter en privée avec les autres membres de votre clan !</h2>
 <h3 class="text-center">This is why we clash</h3>
+<img src="Images/download(1).jpg" alt="deuxième logo du site" class="w3-round">
 
 
 <?php
