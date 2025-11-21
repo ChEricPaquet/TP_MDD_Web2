@@ -11,10 +11,10 @@ function afficherClan()
 {
     require 'vue/clan.php';
 }
-function afficherClanDesc()
+function afficherClanDesc($id)
 {
     // Vérifier que l'ID du clan est fourni et valide CHATGPT
-    if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    if (!isset($id) || !is_numeric($id)) {
        // Ajouter une gestion d'erreur appropriée ici
     }
     require 'vue/clanDescriptif.php';
