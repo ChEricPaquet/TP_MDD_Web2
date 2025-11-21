@@ -44,4 +44,24 @@ class ModeleUtilisateurs
         // Retourne l'objet PDOStatement contenant le résultat
         return $req;
     }
+
+    public static function ObtenirNom($idUtilisateur)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        // Préparation de la requête SQL avec un paramètre nommé
+        $req = $connexion->prepare(
+            "SELECT nom FROM Utilisateur WHERE Id_Utilisateur = :idUtilisateur"
+            
+        );
+
+        // Liaison des paramètres nommés avec les variables PHP
+        $req->bindParam(':idUtilisateur', $idUtilisateur);
+
+        // Exécution de la requête
+        $req->execute();
+
+        // Retourne l'objet PDOStatement contenant le résultat
+        return $req;
+    }
 }
