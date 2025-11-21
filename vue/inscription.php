@@ -5,19 +5,10 @@
 <h1 class="text-center big-goofy-title">Créer un compte</h1>
 
 <div class="col-sm-10 col-md-8 col-lg-6 mx-auto bg-blue-900 p-4 rounded-3">
-    <?php
-    if (isset($_SESSION['erreurs'])) {
-        // Récupère les erreurs et les formate pour l'affichage
-        $erreurs = implode("<br>", $_SESSION['erreurs']);
-        // htmlspecialchars n'est pas nécessaire ici car les erreurs sont générées en interne
-        // Affiche les erreurs dans une alerte Bootstrap
-        echo '<div class="alert alert-danger" role="alert">' . $erreurs . '</div>';
-        // Supprime les erreurs de la session après les avoir affichées
-        unset($_SESSION['erreurs']);
-    }
-    ?>
+    <div id="reponse"></div>
 
-    <form method="post" action="index.php?action=inscription" class="needs-validation" novalidate>
+
+    <form id="formInscription" method="post" action="index.php?action=inscription" class="needs-validation" novalidate>
         <div class="mb-3 mt-3">
             <label for="nom" class="form-label">Nom d'utilisateur&nbsp;:</label>
             <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom d'utilisateur" name="nom" required minlength="3" maxlength="45">
