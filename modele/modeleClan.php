@@ -132,5 +132,18 @@ class ModeleClan
 
         return $req;
     }
+
+    public static function ObtenirUtilisateursClan($idClan)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare("SELECT Id_Utilisateur, Id_Role FROM UtilisateurClan WHERE Id_Clan = :idClan");
+
+        $req->bindParam(':idClan', $idClan);
+
+        $req->execute();
+
+        return $req;
+    }
 }
 ?>
