@@ -42,7 +42,9 @@ try {
             afficherClan();
             break;
         case 'afficherClanDesc':
-            afficherClanDesc();
+            $id = $_GET['id'];
+            afficherClanDesc($id);
+            break;
         default:
             http_response_code(404);
             throw new Exception('404 : Action non supportée');

@@ -45,13 +45,13 @@ class ModeleUtilisateurs
         return $req;
     }
 
-    public static function ObtenirNom($idUtilisateur)
+    public static function ObtenirTout($idUtilisateur)
     {
         $connexion = BD::ObtenirConnexion();
 
         // Préparation de la requête SQL avec un paramètre nommé
         $req = $connexion->prepare(
-            "SELECT nom FROM Utilisateur WHERE Id_Utilisateur = :idUtilisateur"
+            "SELECT * FROM Utilisateur WHERE Id_Utilisateur = :idUtilisateur"
             
         );
 

@@ -8,7 +8,23 @@ require_once "modele/modeleCarte.php";?>
 <script src="js/carte.js"></script>
 
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
-<div class="container py-4 bg-blue-900 tableau" id="tableau-carte">
+<div class="container py-4 bg-blue-900 tableau" id="deck">
+    <div class="row g-4">
+        <div class="card col-3" id="1"> <img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+        <div class="card col-3" id="2"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+        <div class="card col-3" id="3"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+        <div class="card col-3" id="4"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+    </div>
+    <div class="row g-4" style="margin-top: auto;">
+        <div class="card col-3" id="5"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+        <div class="card col-3" id="6"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+        <div class="card col-3" id="7"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+        <div class="card col-3" id="8"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+    </div>
+</div>
+
+
+<div class="container py-4 bg-blue-900 tableau" id="tableau-carte" style="margin-top: 10px;">
     <div class="row g-4">
         <?php
         $requeteCartes = ModeleCarte::ObtenirTout();
@@ -39,4 +55,4 @@ require_once "modele/modeleCarte.php";?>
 
 <?php $contenu = ob_get_clean(); ?>
 
-<?php require 'vue/gabarit.php'; ?>
+<?php require 'vue/gabarit.php'; ?>hei
