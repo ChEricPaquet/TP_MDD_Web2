@@ -13,9 +13,10 @@ $invitations = $requeteInvitation->fetch();
     <div class="container bg-blue-900">
         <div>
 
-            <? if ($invitations == null) {
+            <?php if ($invitations == null) {
                 echo "<h2 class='text-center'>Vous n'avez aucune invitation pour le moment.</h2>";
-            } else {
+            } 
+            else {
                 do { ?>
                     <div data-id="<?= $invitations['Id_Invitation'] ?>">
                         <?php
@@ -36,8 +37,8 @@ $invitations = $requeteInvitation->fetch();
     </div>
 </div>
 
-<form method=" action="index.php?action=envoyerInvitation" class="needs-validation" novalidate id="form-inviter">
-    <h1 class="big-goofy-title"> Inviter un utilisateur </h1>
+<h1 class="big-goofy-title text-center"> Inviter un utilisateur </h1>
+<form class="container bg-blue-900 tableau" method=" action="index.php?action="envoyerInvitation" class="needs-validation" novalidate id="form-inviter" style="margin-top: 20px;">
     <div class="mb-3 mt-3">
         <label for="nomUtilisateur" class="form-label">Nom d'utilisateur&nbsp;:</label>
         <input type="text" class="form-control" id="nomUtilisateur" placeholder="Entrez le nom d'utilisateur" name="nomUtilisateur" required minlength="3" maxlength="45">
@@ -45,8 +46,9 @@ $invitations = $requeteInvitation->fetch();
             Le nom d'utilisateur est requis et doit contenir entre 3 et 45 caractères.
         </div>
         <label for="clan" class="form-label">Clan</label>
-        <select class="form-select" id="clan" name="clan" required>
-            <option value="" disabled selected><?php ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']); ?></option>
+    <div> <?php $requeteClan = ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']); $nom = $requeteClan->fetch(); echo $nom;?> </div>
+    <button type="submit" class="btn btn-primary">Envoyer l'invitation</button>
+    </div>
 </form>
 
 <?php $contenu = ob_get_clean(); ?>

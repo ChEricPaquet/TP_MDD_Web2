@@ -3,9 +3,18 @@
 
 require_once "modele/modeleCarte.php";?>
 
-<?php ob_start(); ?>
+<?php ob_start();
+$images = [];
+$requeteCartes = ModeleCarte::ObtenirTout();
+while ($carte = $requeteCartes->fetch()) {
+    $images[$carte['Id_Carte']] = "Images/Cartes/" . $carte['image'];
+}
+?>
 
-<script src="js/carte.js"></script>
+<script>
+    const imagesCartes = <?php echo json_encode($images); ?>;
+</script>
+<script src="js/deck.js"></script>
 
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
 <div class="container py-4 bg-blue-900 tableau" id="deck">
@@ -21,6 +30,7 @@ require_once "modele/modeleCarte.php";?>
         <div class="card col-3" id="7"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
         <div class="card col-3" id="8"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
     </div>
+    <button id="btn-sauvegarder" class="btn btn-primary mt-4">Sauvegarder le deck ajouter priver publicx truc ahhahaa</button>
 </div>
 
 
@@ -31,15 +41,16 @@ require_once "modele/modeleCarte.php";?>
         while ($carte = $requeteCartes->fetch()) {
             ?>
         <!-- ChatGPT : I want a beautiful grid that shows all the cards with their image and their name under it -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="card h-100 shadow-sm border-0" data-id="<?$carte['Id_Carte']?>">
+            <div class="col-6 col-md-4 col-lg-2 "data-id="<?=$carte['Id_Carte']?>">
+                <div class="card h-100 shadow-sm border-0" data-id="<?=$carte['Id_Carte']?>">
                     <img
                         src="Images/Cartes/<?= htmlspecialchars($carte['image'])?>"
                         class="card-img-top rounded-top"
                         alt="<?= htmlspecialchars($carte['nom']) ?>"
-                        style="width: 100%; height: auto;">
-                    <div class="card-body text-center">
-                        <h6 class="card-title fw-semibold mb-0">
+                        style="width: 100%; height: auto;"
+                        data-id="<?=$carte['Id_Carte']?>">
+                    <div class="card-body text-center" data-id="<?=$carte['Id_Carte']?>">
+                        <h6 class="card-title fw-semibold mb-0" data-id="<?=$carte['Id_Carte']?>">
                             <?= htmlspecialchars($carte['nom']) ?>
                         </h6>
                     </div>
