@@ -19,3 +19,16 @@ function afficherClanDesc($id)
     }
     require 'vue/clanDescriptif.php';
 }
+function afficherInvitations()
+{
+    require 'vue/invitation.php';
+}
+
+function envoyerInvitation()
+{
+    $UtilisateurInvite = ModeleUtilisateurs::ObtenirUtilisateur($_POST['nomUtilisateur']);
+    $utilisateurInvite = $UtilisateurInvite->fetch();
+    if ($utilisateurInvite) {
+        ModeleInvitation::AjouterInvitation($_SESSION['Session']['id'], $utilisateurInvite['Id_Utilisateur'], $_SESSION['Clan']['Id_Clan']);
+    }
+}

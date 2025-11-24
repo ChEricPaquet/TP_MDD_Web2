@@ -33,6 +33,13 @@
                         href="index.php?action=afficherClan">
                         Clans
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link <?php NavClass("afficherInvitations"); ?>"
+                        href="index.php?action=afficherInvitations">
+                        Invitations
+                    </a>
                 <?php } ?>
             </ul>
             <!-- Boutons de navigation à droite -->
