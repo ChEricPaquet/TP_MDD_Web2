@@ -184,7 +184,7 @@ VALUES
 ("Géant runique","GeantRunique.png","Unité robuste qui boost deux cartes", 3),
 ("Gel","Gel.png","Sort qui gel", 3),
 ("Gobelin explosif","GobelinExplosif.png","Gobelin fan de Ossama Bin Laden", 2),   
-("Gobelins","Gobelins.png","Trois gobelins rapides qui attaquent au corps à corps", 1),
+("Gobelins","Gobelins.png","Quatre juifs rapides qui attaquent au corps à corps", 1),
 ("Gobelins à lance","GobelinsALance.png","Trois gobelins avec des lances qui attaquent à distance", 1),
 ("Gobelinstein","Gobelinstein.png","Petit gobelin à distance et gros gobelin tanky avec une capacitée délectricité", 5), 
 ("Golem","Golem.png","Unité très robuste qui explose en deux golemets à sa mort", 4),
@@ -320,3 +320,11 @@ VALUES
 (47, 5),
 (22, 5),
 (5, 5);
+
+INSERT INTO Invitation (Id_Utilisateur, Id_Utilisateur_1, Id_Clan)
+VALUES
+(3, 1, 1),
+(4, 2, 2),
+(5, 3, 3),
+(6, 4, 4),
+(7, 5, 5);
