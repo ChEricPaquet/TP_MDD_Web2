@@ -3,12 +3,12 @@ require_once 'modele/modeleClan.php';
 require_once 'modele/modeleUtilisateurs.php' ?>
 
 <?php ob_start(); 
-$requeteProfil = ModeleUtilisateurs::ObtenirTout($_GET['id']);
+$requeteProfil = ModeleUtilisateurs::ObtenirTout($id);
 $profil = $requeteProfil->fetch();?>
 
 <h1 class="text-center big-goofy-title">Profil</h1>
 
-<?php $clanrequete = ModeleClan::ObtenirClanUtilisateur($_GET['id']);
+<?php $clanrequete = ModeleClan::ObtenirClanUtilisateur($id);
 $clan = $clanrequete->fetch() ?>
 <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
     <div class="card">
