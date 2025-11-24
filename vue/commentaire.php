@@ -23,7 +23,8 @@ require_once "modele/modeleCarte.php";?>
         <div class="mb-3 mt-3">
             <label for="commentaire" class="form-label"> Commentaire &nbsp;:</label>
             <input type="text" class="form-control" id="commentaire" placeholder="Entrez un commentaire pwease" name="commentaire" required minlength="3" maxlength="1000">
-             <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
+            <input type="hidden" name="id_clan" value="<?php echo $id_clan; ?>">
+            <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
         </div>
     </form>
 </div>

@@ -29,6 +29,11 @@ function envoyerInvitation()
     $UtilisateurInvite = ModeleUtilisateurs::ObtenirUtilisateur($_POST['nomUtilisateur']);
     $utilisateurInvite = $UtilisateurInvite->fetch();
     if ($utilisateurInvite) {
-        ModeleInvitation::AjouterInvitation($_SESSION['Session']['id'], $utilisateurInvite['Id_Utilisateur'], $_SESSION['Clan']['Id_Clan']);
+        ModeleInvitation::AjouterInvitation($_SESSION['utilisateur']['Id_Utilisateur'], $utilisateurInvite['Id_Utilisateur'], $_SESSION['Clan']['Id_Clan']);
     }
+}
+
+function ajouterCommentaire()
+{
+    ModeleCommentaire :: AjouterCommentaire($_SESSION['utilisateur']['Id_Utilisateur'], $_POST['commentaire'], $_POST['id_clan']);
 }
