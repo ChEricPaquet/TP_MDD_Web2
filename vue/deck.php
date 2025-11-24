@@ -10,16 +10,16 @@ require_once "modele/modeleCarte.php";?>
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
 <div class="container py-4 bg-blue-900 tableau" id="deck">
     <div class="row g-4">
-        <div class="card col-3" id="1"> <img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
-        <div class="card col-3" id="2"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
-        <div class="card col-3" id="3"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
-        <div class="card col-3" id="4"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+        <div class="card col-3" id="1"> <img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card col-3" id="2"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card col-3" id="3"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card col-3" id="4"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
     </div>
     <div class="row g-4" style="margin-top: auto;">
-        <div class="card col-3" id="5"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
-        <div class="card col-3" id="6"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
-        <div class="card col-3" id="7"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
-        <div class="card col-3" id="8"><img src="Images/Autres/cartebg.png" alt="" style="width:60%"></div>
+        <div class="card col-3" id="5"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card col-3" id="6"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card col-3" id="7"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card col-3" id="8"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
     </div>
 </div>
 
@@ -32,7 +32,7 @@ require_once "modele/modeleCarte.php";?>
             ?>
         <!-- ChatGPT : I want a beautiful grid that shows all the cards with their image and their name under it -->
             <div class="col-6 col-md-4 col-lg-2">
-                <div class="card h-100 shadow-sm border-0">
+                <div class="card h-100 shadow-sm border-0" data-id="<?$carte['Id_Carte']?>">
                     <img
                         src="Images/Cartes/<?= htmlspecialchars($carte['image'])?>"
                         class="card-img-top rounded-top"
@@ -55,4 +55,4 @@ require_once "modele/modeleCarte.php";?>
 
 <?php $contenu = ob_get_clean(); ?>
 
-<?php require 'vue/gabarit.php'; ?>hei
+<?php require 'vue/gabarit.php'; ?>
