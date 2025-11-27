@@ -19,13 +19,14 @@ function initialiser() {
     cartes.addEventListener("click", function (event) {
         const carte = event.target;
         console.warn(carte);
-        if(!VerifierChampion(carte)){
             AjouterCarteAuDeck(carte)
-        }
     })
 
     imagesDeck.addEventListener("click", function (event){
         const carte = event.target;
+        if(carte.id === "deck"){
+            return;
+        }
         SupprimerCarte(carte);
     })
 }
@@ -35,13 +36,22 @@ function AjouterCarteAuDeck(carte){
         console.warn(carte);
         return;
     }
-        if (tableauDeck.includes(carte.dataset.id)) {
-        console.warn("Déjà dans le deck");
-        return;
+        for (const id of tableauDeck) {
+        if (id != null && id.dataset.id == carte.dataset.id) {
+            return;
+        }
     }
+    if (carte.dataset.rarete == 5) {
+        for (const id of tableauDeck) {
+        if (id != null && id.dataset.rarete == 5) {
+            return;
+        }
+    }
+    }
+
     for (let i = 0; i < tableauDeck.length; i++) {
         if (tableauDeck[i] === null) {
-            tableauDeck[i] = carte.dataset.id;
+            tableauDeck[i] = carte;
             RafraichirDeck();
             break;
         }
@@ -53,7 +63,7 @@ function RafraichirDeck(){
     tableauDeck.forEach(id => {
         if(id != null){
             var place = document.getElementById(compteurId);
-            place.innerHTML="<img id=\"" + compteurId + "\" src=" + imagesCartes[id] + " \"style=\"width:60%\">";
+            place.innerHTML="<img id=\"" + compteurId + "\" src=" + imagesCartes[id.dataset.id] + " \"style=\"width:60%\">";
 
         }
         else{
@@ -67,17 +77,5 @@ function RafraichirDeck(){
 function SupprimerCarte(carte){
     tableauDeck[carte.id - 1] = null;
     RafraichirDeck();
-}
-
-function VerifierChampion(carte) {
-    if (carte.dataset.rarete != 5) {
-        return false;
-    }
-    for (const id of tableauDeck) {
-        if (id.dataset.rarete == 5) {
-            return true;
-        }
-    }
-    return false;
 }
 

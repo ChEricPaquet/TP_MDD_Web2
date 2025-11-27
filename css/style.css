@@ -158,3 +158,14 @@ h3.text-center {
     margin: 10px 0;
     font-size: 1.2rem;
 }
+
+.deck-slot {
+    background-color: #0b1c3d; 
+    border-radius: 12px;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s;
+    cursor: pointer;
+}
+.deck-slot:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #00000066;
+}

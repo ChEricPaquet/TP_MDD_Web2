@@ -17,28 +17,43 @@ while ($carte = $requeteCartes->fetch()) {
 <script src="js/deck.js"></script>
 
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
-<div class="container py-4 bg-blue-900 tableau" id="deck">
+<form method="post" action="ajouterDeck" style="padding: 1%;" class="container py-4 bg-blue-900 tableau" id="deck">
     <div class="row g-4">
-        <div class="card col-3" id="1"> <img src="Images/Autres/cartebg.png" style="width:60%"></div>
-        <div class="card col-3" id="2"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
-        <div class="card col-3" id="3"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
-        <div class="card col-3" id="4"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card deck-slot col-3" data-id="0" id="1"> <img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card deck-slot col-3" data-id="0" id="2"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card deck-slot col-3" data-id="0" id="3"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card deck-slot col-3" data-id="0" id="4"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
     </div>
     <div class="row g-4" style="margin-top: auto;">
-        <div class="card col-3" id="5"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
-        <div class="card col-3" id="6"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
-        <div class="card col-3" id="7"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
-        <div class="card col-3" id="8"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card deck-slot col-3" data-id="0" id="5"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card deck-slot col-3" data-id="0" id="6"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card deck-slot col-3" data-id="0" id="7"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
+        <div class="card deck-slot col-3" data-id="0" id="8"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
     </div>
-    <div>
-        <label>
-            <input type="radio" name="radioVisibilité" id="radioPublic" checked> Public
-            <input type="radio" name="radioVisibilité" id="radioClan"> Clan seulement
-            <input type="radio" name="radioVisibilité" id="radioPrivé"> Privée
-        </label>    
-        <button id="btn-sauvegarder" class="btn btn-primary mt-4">Sauvegarder le deck ajouter priver publicx truc ahhahaa</button>
+    <div class="text-center mt-5">
+        <label class="form-label fw-bold mb-2">Visibilité du deck :</label>
+
+        <div class="form-check form-check-inline">
+            <input type="radio" class="form-check-input" name="visibilite" id="radioPublic" value="public" checked>
+            <label class="form-check-label" for="radioPublic">Public</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input type="radio" class="form-check-input" name="visibilite" id="radioClan" value="clan">
+            <label class="form-check-label" for="radioClan">Clan seulement</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input type="radio" class="form-check-input" name="visibilite" id="radioPrive" value="prive">
+            <label class="form-check-label" for="radioPrive">Privé</label>
+        </div>
     </div>
-</div>
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary px-5 py-2 fs-5 fw-semibold">
+            Sauvegarder le deck
+        </button>
+    </div>
+</form>
 
 
 <div class="container py-4 bg-blue-900 tableau" id="tableau-carte" style="margin-top: 10px;">
@@ -62,7 +77,7 @@ while ($carte = $requeteCartes->fetch()) {
                         </h6>
                     </div>
                 </div>
-            </div>
+            </div> 
         <?php
         }
         ?>
