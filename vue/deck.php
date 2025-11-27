@@ -48,16 +48,16 @@ while ($carte = $requeteCartes->fetch()) {
         while ($carte = $requeteCartes->fetch()) {
             ?>
         <!-- ChatGPT : I want a beautiful grid that shows all the cards with their image and their name under it -->
-            <div class="col-6 col-md-4 col-lg-2 "data-id="<?=$carte['Id_Carte']?>">
+            <div class="col-6 col-md-4 col-lg-2 "data-id="<?=$carte['Id_Carte']?>" data-rarete="<?=$carte['Id_Rarete']?>">
                 <div class="card h-100 shadow-sm border-0" data-id="<?=$carte['Id_Carte']?>" data-rarete="<?=$carte['Id_Rarete']?>">
                     <img
                         src="Images/Cartes/<?= htmlspecialchars($carte['image'])?>"
                         class="card-img-top rounded-top"
                         alt="<?= htmlspecialchars($carte['nom']) ?>"
                         style="width: 100%; height: auto;"
-                        data-id="<?=$carte['Id_Carte']?>">
-                    <div class="card-body text-center" data-id="<?=$carte['Id_Carte']?>">
-                        <h6 class="card-title fw-semibold mb-0" data-id="<?=$carte['Id_Carte']?>">
+                        data-id="<?=$carte['Id_Carte']?>" data-rarete="<?=$carte['Id_Rarete']?>">
+                    <div class="card-body text-center" data-id="<?=$carte['Id_Carte']?>" data-rarete="<?=$carte['Id_Rarete']?>">
+                        <h6 class="card-title fw-semibold mb-0" data-id="<?=$carte['Id_Carte']?>" data-rarete="<?=$carte['Id_Rarete']?>">
                             <?= htmlspecialchars($carte['nom']) ?>
                         </h6>
                     </div>
