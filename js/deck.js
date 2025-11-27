@@ -15,6 +15,7 @@ const tableauDeck = [
 function initialiser() {
     const cartes = document.querySelector("#tableau-carte")
     const imagesDeck = document.querySelector("#deck")
+    const envoyerButton = document.querySelector("#envoyer")
 
     cartes.addEventListener("click", function (event) {
         const carte = event.target;
@@ -28,6 +29,15 @@ function initialiser() {
             return;
         }
         SupprimerCarte(carte);
+    })
+
+    envoyerButton.addEventListener("click", function (event){
+        for (const id of tableauDeck){
+            if (id == null) {
+                return;
+            }
+        }
+        
     })
 }
 

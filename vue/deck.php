@@ -49,7 +49,7 @@ while ($carte = $requeteCartes->fetch()) {
         </div>
     </div>
     <div class="text-center mt-4">
-        <button type="submit" class="btn btn-primary px-5 py-2 fs-5 fw-semibold">
+        <button type="submit" class="btn btn-primary px-5 py-2 fs-5 fw-semibold" id="envoyer">
             Sauvegarder le deck
         </button>
     </div>
