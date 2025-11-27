@@ -19,8 +19,9 @@ function initialiser() {
     cartes.addEventListener("click", function (event) {
         const carte = event.target;
         console.warn(carte);
-        
-        AjouterCarteAuDeck(carte)
+        if(!VerifierChampion(carte)){
+            AjouterCarteAuDeck(carte)
+        }
     })
 
     imagesDeck.addEventListener("click", function (event){
@@ -66,5 +67,17 @@ function RafraichirDeck(){
 function SupprimerCarte(carte){
     tableauDeck[carte.id - 1] = null;
     RafraichirDeck();
+}
+
+function VerifierChampion(carte){
+    if (carte.dataset.rarete != 5) {
+        return false
+    };
+    tableauDeck.forEach(id => {
+        if (id.dataset.rarete == 5) {
+            return true
+        }
+    });
+    return false;
 }
 

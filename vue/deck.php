@@ -30,12 +30,14 @@ while ($carte = $requeteCartes->fetch()) {
         <div class="card col-3" id="7"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
         <div class="card col-3" id="8"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
     </div>
-    <label>
-        <input type="radio" name="radioVisibilité" id="radioPublic"> Public
-        <input type="radio" name="radioVisibilité" id="radioClan"> Clan seulement
-        <input type="radio" name="radioVisibilité" id="radioPrivé"> Privée
-    </label>
-    <button id="btn-sauvegarder" class="btn btn-primary mt-4">Sauvegarder le deck ajouter priver publicx truc ahhahaa</button>
+    <div>
+        <label>
+            <input type="radio" name="radioVisibilité" id="radioPublic" checked> Public
+            <input type="radio" name="radioVisibilité" id="radioClan"> Clan seulement
+            <input type="radio" name="radioVisibilité" id="radioPrivé"> Privée
+        </label>    
+        <button id="btn-sauvegarder" class="btn btn-primary mt-4">Sauvegarder le deck ajouter priver publicx truc ahhahaa</button>
+    </div>
 </div>
 
 
@@ -47,7 +49,7 @@ while ($carte = $requeteCartes->fetch()) {
             ?>
         <!-- ChatGPT : I want a beautiful grid that shows all the cards with their image and their name under it -->
             <div class="col-6 col-md-4 col-lg-2 "data-id="<?=$carte['Id_Carte']?>">
-                <div class="card h-100 shadow-sm border-0" data-id="<?=$carte['Id_Carte']?>">
+                <div class="card h-100 shadow-sm border-0" data-id="<?=$carte['Id_Carte']?>" data-rarete="<?=$carte['Id_Rarete']?>">
                     <img
                         src="Images/Cartes/<?= htmlspecialchars($carte['image'])?>"
                         class="card-img-top rounded-top"
