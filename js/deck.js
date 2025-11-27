@@ -47,9 +47,6 @@ function AjouterCarteAuDeck(carte){
     }
 }
 
-
-
-
 function RafraichirDeck(){
     let compteurId = 1;
     tableauDeck.forEach(id => {

@@ -30,6 +30,11 @@ while ($carte = $requeteCartes->fetch()) {
         <div class="card col-3" id="7"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
         <div class="card col-3" id="8"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
     </div>
+    <label>
+        <input type="radio" name="radioVisibilité" id="radioPublic"> Public
+        <input type="radio" name="radioVisibilité" id="radioClan"> Clan seulement
+        <input type="radio" name="radioVisibilité" id="radioPrivé"> Privée
+    </label>
     <button id="btn-sauvegarder" class="btn btn-primary mt-4">Sauvegarder le deck ajouter priver publicx truc ahhahaa</button>
 </div>
 
