@@ -28,9 +28,10 @@ function envoyerInvitation()
 {
     $UtilisateurInvite = ModeleUtilisateurs::ObtenirUtilisateur($_POST['nomUtilisateur']);
     $utilisateurInvite = $UtilisateurInvite->fetch();
-    if ($utilisateurInvite) {
+    if ($utilisateurInvite != null) {
         ModeleInvitation::AjouterInvitation($_SESSION['utilisateur']['Id_Utilisateur'], $utilisateurInvite['Id_Utilisateur'], $_SESSION['Clan']['Id_Clan']);
     }
+    require 'vue/invitation.php';
 }
 
 function ajouterCommentaire()

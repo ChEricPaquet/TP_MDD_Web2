@@ -145,5 +145,18 @@ class ModeleClan
 
         return $req;
     }
+
+    public static function ObtenirRoleNom($id_role)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare("SELECT role FROM Role WHERE Id_Role = :id_role");
+
+        $req->bindParam(':id_role', $id_role);
+
+        $req->execute();
+
+        return $req;
+    }
 }
 ?>

@@ -38,7 +38,7 @@ $invitations = $requeteInvitation->fetch();
 </div>
 
 <h1 class="big-goofy-title text-center"> Inviter un utilisateur </h1>
-<form class="container bg-blue-900 tableau" method=" action="index.php?action="envoyerInvitation" class="needs-validation" novalidate id="form-inviter" style="margin-top: 20px;">
+<form class="container bg-blue-900 tableau" method="post" action="envoyerInvitation" class="needs-validation" novalidate id="form-inviter" style="margin-top: 20px;">
     <div class="mb-3 mt-3">
         <label for="nomUtilisateur" class="form-label">Nom d'utilisateur&nbsp;:</label>
         <input type="text" class="form-control" id="nomUtilisateur" placeholder="Entrez le nom d'utilisateur" name="nomUtilisateur" required minlength="3" maxlength="45">
@@ -46,7 +46,7 @@ $invitations = $requeteInvitation->fetch();
             Le nom d'utilisateur est requis et doit contenir entre 3 et 45 caractères.
         </div>
         <label for="clan" class="form-label">Clan</label>
-    <div> <?php $requeteClan = ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']); $nom = $requeteClan->fetch(); echo $nom;?> </div>
+    <div> <?php $requeteClan = ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']); $clan = $requeteClan->fetch(); echo $clan['nom_clan'];?> </div>
     <button type="submit" class="btn btn-primary">Envoyer l'invitation</button>
     </div>
 </form>

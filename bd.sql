@@ -10,7 +10,9 @@ CREATE TABLE Clan(
     Id_Clan INT AUTO_INCREMENT,
     nom_clan VARCHAR(150)  NOT NULL,
     description_clan VARCHAR(500)  NOT NULL,
-    PRIMARY KEY(Id_Clan)
+    prive BOOLEAN NOT NULL,
+    PRIMARY KEY(Id_Clan),
+    UNIQUE(nom_clan)
 );
 
 CREATE TABLE Utilisateur(
@@ -25,7 +27,7 @@ CREATE TABLE Role(
     Id_Role INT AUTO_INCREMENT,
     role VARCHAR(30) ,
     PRIMARY KEY(Id_Role)
-); 
+);
 
 CREATE TABLE Rarete(
     Id_Rarete INT AUTO_INCREMENT,
@@ -248,22 +250,36 @@ INSERT INTO Utilisateur (nom, mot_de_passe)
 VALUES
 ("MegaNight999", "At!92xQm7"),
 ("Firespark", "Bg#74LmZp"),
-("Clara Dubois", "Cd*58VrNt"),
-("David Lavoie", "Dl@63QwXe"),
-("Élodie Fortin", "Ef!81ZkRt"),
-("François Moreau", "Fm#97YtLp"),
-("Gabrielle Roy", "Gr*46PwMn"),
-("Hugo Boucher", "Hb@55KsQz"),
-("Isabelle Caron", "Ic!72XvJr"),
-("Julien Martel", "Jm#83NtWq");
+("Micheal Bouffard", "Cd*58VrNt"),
+("MrBeast", "Dl@63QwXe"),
+("Kanye West", "Ef!81ZkRt"),
+("Krambit", "Fm#97YtLp"),
+("SilvarC1", "Gr*46PwMn"),
+("AAAAAAAA", "Hb@55KsQz"),
+("Gandalf2", "Ic!72XvJr"),
+("Julius Ceasar", "Jm#83NtWq"),
+("Canishlol666", "Cp*29XzVb"),
+("SparkyFire", "Sf@68LmYp"),
+("ULose123", "Ud!47VrNt"),
+("MohamedLight", "Ml#59QwXe"),
+("Ryley", "Rs*82ZkRt"),
+("Ian77", "Lb@91YtLp"),
+("Ken", "Kg!34PwMn"),
+("DragonSlayer", "Db#76KsQz"),
+("HAWGRIDAR", "Kr*88NtWq"),
+("EtienneDaGoat", "Sh@22XzVb");
 
-INSERT INTO Clan (nom_clan, description_clan)
+INSERT INTO Clan (nom_clan, description_clan, prive)
 VALUES
-("Les Loups Argentés", "Un clan de guerriers rusés, connus pour leur rapidité et leur esprit d’équipe."),
-("Dragons Écarlates", "Clan fier et puissant, spécialisé dans la maîtrise du feu et la force brute."),
-("Ombres Silencieuses", "Assassins discrets et stratèges, experts en infiltration et en espionnage."),
-("Gardiens de l’Aube", "Protecteurs des terres sacrées, porteurs de lumière et défenseurs des innocents."),
-("Liberté du Québec", "Un clan légendaire, lié aux arts patriotiques et aux secrets français québecois.");
+("Les MegaKnights", "SAUTER FRAPPER GAGNER", 0),
+("Phénix Doré", "Un clan légendaire, renaissant de ses cendres, dédié à la meilleure carte du jeu: Le Phoenix", 1),
+("Légion des Ombres", "Profesionnels seulement, doit être actif et talentueux", 0),
+("Gardiens des Noobs", "Un clan dévoué à la protection des faibles, avec une forte tradition de défense.", 1),
+("Dragons Écarlates", "Clan fier et puissant, spécialisé dans la guerre des clans", 0),
+("FlashLight", "Le top du top, les rois des rois, bienvenu dans la cours des grands.", 0),
+("Liberté du Québec", "Un clan légendaire, lié aux arts patriotiques et aux secrets français québecois.", 0);
+("McDonaldDriveThru", "Mettez les frites dans le sac petit frère", 0),
+
 
 INSERT INTO Deck (Id_Visibilite, Id_Utilisateur)
 VALUES
@@ -328,3 +344,26 @@ VALUES
 (5, 3, 3),
 (6, 4, 4),
 (7, 5, 5);
+
+INSERT INTO UtilisateurClan (Id_Clan, Id_Utilisateur, Id_Role)
+VALUES
+(1, 1, 4),
+(1, 2, 2),
+(1, 3, 1),
+(2, 4, 4),
+(2, 5, 3),
+(2, 6, 1),
+(3, 7, 4),
+(3, 8, 2),
+(3, 9, 1),
+(4, 10, 4);
+(4, 11, 2),
+(4, 12, 1),
+(5, 13, 4),
+(5, 14, 3),
+(5, 15, 1),
+(6, 16, 4),
+(6, 17, 2),
+(6, 18, 1),
+(7, 19, 4),
+(7, 20, 2);
