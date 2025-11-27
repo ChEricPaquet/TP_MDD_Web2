@@ -69,15 +69,15 @@ function SupprimerCarte(carte){
     RafraichirDeck();
 }
 
-function VerifierChampion(carte){
+function VerifierChampion(carte) {
     if (carte.dataset.rarete != 5) {
-        return false
-    };
-    tableauDeck.forEach(id => {
+        return false;
+    }
+    for (const id of tableauDeck) {
         if (id.dataset.rarete == 5) {
-            return true
+            return true;
         }
-    });
+    }
     return false;
 }
 
