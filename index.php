@@ -73,6 +73,9 @@ try {
         case 'quitterClan':
             quitterClan();
             break;
+        case 'sauvegarderDeck':
+            sauvegarderDeck();
+            break;
         default:
             http_response_code(404);
             throw new Exception('404 : Action non supportée');
