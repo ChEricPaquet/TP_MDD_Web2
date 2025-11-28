@@ -15,7 +15,6 @@ const tableauDeck = [
 function initialiser() {
     const cartes = document.querySelector("#tableau-carte")
     const imagesDeck = document.querySelector("#deck")
-    const envoyerButton = document.querySelector("#envoyer")
 
     cartes.addEventListener("click", function (event) {
         const carte = event.target;
@@ -31,10 +30,10 @@ function initialiser() {
         SupprimerCarte(carte);
     })
 
-    envoyerButton.addEventListener("click", function (event){
+    imagesDeck.addEventListener("submit", function (event){
         for (const id of tableauDeck){
             if (id == null) {
-                return;
+                gererErreurServeur("Le deck doit avoir 8 cartes")
             }
         }
         SauvegarderDeck(event)
@@ -78,7 +77,7 @@ function RafraichirDeck(){
         }
         else{
             var place = document.getElementById(compteurId);
-            place.innerHTML="<img src=\"Images/Autres/cartebg.png \"style=\"width:60%\">";
+            place.innerHTML="<img src=\"Images/Autres/cartebg.png\"style=\"width:60%\">";
         }
         compteurId += 1;        
     });
@@ -101,7 +100,7 @@ async function SauvegarderDeck(event){
         return;
     }
 
-    const formdata = new FormData(formulaire);
+    const formData = new FormData(formulaire);
     formData.append("tableauDeck", JSON.stringify(tableauAEnvoyer()));
 
     try{
@@ -148,24 +147,12 @@ function gererErreurClient(erreur) {
     `;
 }
 
-function tableauAEnvoyer(){
-    const tableauFinal = [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    ];
 
-    const compteur = 1;
-
-    for (const id of tableauDeck){
-        tableauFinal[compteur] = id.dataset.id
-    };
-
+function tableauAEnvoyer() {
+    //CHATGPT renvoyer dans un tableau de Id
+    const tableauFinal = new Array(tableauDeck.length);
+    for (let i = 0; i < tableauDeck.length; i++) {
+        tableauFinal[i] = (tableauDeck[i] && tableauDeck[i].dataset && tableauDeck[i].dataset.id) ? tableauDeck[i].dataset.id : null;
+    }
     return tableauFinal;
 }
-

@@ -41,7 +41,7 @@ function envoyerInvitation()
             ModeleInvitation::AjouterInvitation($_SESSION['utilisateur']['Id_Utilisateur'], $utilisateurInvite['Id_Utilisateur'], $_POST['Id_Clan']);
         }
     } catch (PDOException $e) {
-        $_SESSION['erreurs'] = ["Impossible d'envoyer l'invitation : " . $e->getMessage()];
+        $_SESSION['erreurs'] = "Impossible d'envoyer l'invitation : " . $e->getMessage();
         http_response_code(400);
         echo json_encode($_SESSION['erreurs']);
         exit;
@@ -70,7 +70,7 @@ function sauvegarderDeck()
 
 function rejoindreClan($idClan)
 {
-    if($_POST["Id_CLan"])
+    if($idClan == null)
     {
         $idClan = $_POST['Id_Clan'];
     }
@@ -82,13 +82,13 @@ function rejoindreClan($idClan)
     } catch (Exception $e) {
         if ($e->getCode() == 23000) {  // CHAPTGPT: code d'erreur pour erreur de clé primaire/unique
             if (str_contains($e->getMessage(), "1062")) {
-                $_SESSION['erreurs'] = ["Impossible de rejoindre : Vous etes deja dans ce clan."];
+                $_SESSION['erreurs'] = "Impossible de rejoindre : Vous etes deja dans ce clan.";
                 http_response_code(400);
                 echo json_encode($_SESSION['erreurs']);
                 exit;
             }
         }
-        $_SESSION['erreurs'] = ["Impossible de rejoindre le clan : " . $e->getMessage()];
+        $_SESSION['erreurs'] = "Impossible de rejoindre le clan : " . $e->getMessage();
         http_response_code(400);
         echo json_encode($_SESSION['erreurs']);
         exit;
@@ -108,13 +108,13 @@ function accepterInvitation()
     } catch (Exception $e) {
         if ($e->getCode() == 23000) {  // CHAPTGPT: code d'erreur pour erreur de clé primaire/unique
             if (str_contains($e->getMessage(), "1062")) {
-                $_SESSION['erreurs'] = ["Impossible d'accepter l'invitation : Vous etes deja dans ce clan."];
+                $_SESSION['erreurs'] = "Impossible d'accepter l'invitation : Vous etes deja dans ce clan.";
                 http_response_code(400);
                 echo json_encode($_SESSION['erreurs']);
                 exit;
             }
         }
-        $_SESSION['erreurs'] = ["Impossible d'accepter l'invitation : " . $e->getMessage()];
+        $_SESSION['erreurs'] = "Impossible d'accepter l'invitation : " . $e->getMessage();
         http_response_code(400);
         echo json_encode($_SESSION['erreurs']);
         exit;
@@ -127,7 +127,7 @@ function refuserInvitation()
     try {
         ModeleInvitation::SupprimerInvitation($_POST['Id_Invitation']);
     } catch (Exception $e) {
-        $_SESSION['erreurs'] = ["Impossible de refuser l'invitation : " . $e->getMessage()];
+        $_SESSION['erreurs'] = "Impossible de refuser l'invitation : " . $e->getMessage();
         http_response_code(400);
         echo json_encode($_SESSION['erreurs']);
         exit;
@@ -139,7 +139,7 @@ function quitterClan()
     try {
         ModeleClan::SupprimerUtilisateurClan($_SESSION['utilisateur']['Id_Utilisateur'], $_POST['Id_Clan']);
     } catch (Exception $e) {
-        $_SESSION['erreurs'] = ["Impossible de quitter le clan : " . $e->getMessage()];
+        $_SESSION['erreurs'] = "Impossible de quitter le clan : " . $e->getMessage();
         http_response_code(400);
         echo json_encode($_SESSION['erreurs']);
         exit;
@@ -152,9 +152,17 @@ function ajoutClan()
         $idClan = ModeleClan::AjouterClan($_POST['nomClan'], $_POST['descriptionClan']);
         rejoindreClan($idClan);
     } catch (Exception $e) {
-        $_SESSION['erreurs'] = ["Impossible de créer un clan : " . $e->getMessage()];
+ if ($e->getCode() == 23000) {  // CHAPTGPT: code d'erreur pour erreur de clé primaire/unique
+            if (str_contains($e->getMessage(), "1062")) {
+                $_SESSION['erreurs'] = 'Impossible de creer ce clan : Il existe deja.';
+                http_response_code(400);
+                echo json_encode($_SESSION['erreurs']);
+                exit;
+            }
+        }
+        $_SESSION['erreurs'] = "Impossible de creer le clan : " . $e->getMessage();
         http_response_code(400);
         echo json_encode($_SESSION['erreurs']);
-    exit;
+        exit;
     }
 }

@@ -18,6 +18,7 @@ while ($carte = $requeteCartes->fetch()) {
 
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
 <form method="post" action="ajouterDeck" class="container py-4 bg-blue-900 tableau" id="deck">
+    <div id="reponse" ></div>
     <div class="row g-4">
         <div class="card deck-slot col-3" data-id="0" id="1"> <img src="Images/Autres/cartebg.png" style="width:60%"></div>
         <div class="card deck-slot col-3" data-id="0" id="2"><img src="Images/Autres/cartebg.png" style="width:60%"></div>

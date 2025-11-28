@@ -8,7 +8,7 @@ require_once "modele/modeleClan.php"; ?>
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
 <div class="container bg-blue-900 tableau" id="tableau-clans">
     <div>
-        <form action="index.php?action=ajoutClan" method="post" class="needs-validation" novalidate>
+        <form id="formAjouterClan" action="index.php?action=ajoutClan" method="post" class="needs-validation" novalidate>
             <div class="mb-3 mt-3">
                 <label for="nomClan" class="form-label">Nom du clan&nbsp;:</label>
                 <input type="text" class="form-control" id="nomClan" placeholder="Entrez le nom du clan " name="nomClan" required minlength="3" maxlength="100">

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-    const form = document.querySelector("#formAjouterClan");
+    const form = document.querySelectorAll("#ajouterCommentaire");
     form.addEventListener("submit", gererSoumission);
 }
 
@@ -18,7 +18,7 @@ async function gererSoumission(event) {
     const formData = new FormData(formulaire);
 
     try {
-        const reponse = await fetch("index.php?action=ajoutClan", {
+        const reponse = await fetch("index.php?action=ajouterCommentaire", {
             method: "POST",
             body: formData,
         });
@@ -35,14 +35,11 @@ async function gererSoumission(event) {
 }
 
 function gererSuccessServeur(htmlSuccess) {
-    document.querySelector("#reponse").innerHTML = htmlSuccess;
-    setTimeout(() => {
-        document.location = "index.php?action=afficherPageProfil";
-    }, 1000);
+    //ajouter commentaire
 }
 
 function gererErreurServeur(htmlErreur) {
-    document.querySelector("#reponse").innerHTML = `
+    document.querySelector("#reponseCommentaire").innerHTML = `
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         ${htmlErreur}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -52,7 +49,7 @@ function gererErreurServeur(htmlErreur) {
 
 function gererErreurClient(erreur) {
     console.error("Erreur :", erreur);
-    document.querySelector("#reponse").innerHTML = `
+    document.querySelector("#reponseCommentaire").innerHTML = `
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         Une erreur est survenue. Veuillez réessayer plus tard.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

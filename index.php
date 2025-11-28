@@ -65,7 +65,7 @@ try {
             sauvegarderDeck();
             break;
         case 'rejoindreClan':
-            rejoindreClan();
+            rejoindreClan(null);
             break;
         case 'accepterInvitation':
             accepterInvitation();
