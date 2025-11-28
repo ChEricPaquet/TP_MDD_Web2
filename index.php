@@ -78,6 +78,8 @@ try {
             break;
         case 'ajoutClan':
             ajoutClan();
+        case 'sauvegarderDeck':
+            sauvegarderDeck();
             break;
         default:
             http_response_code(404);

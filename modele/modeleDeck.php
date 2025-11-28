@@ -2,15 +2,14 @@
 require_once "modele/bd.php";
 class ModeleDeck
 {
-    public static function AjouterDeck($nomDeck, $idVisibilite, $idUtilisateur)
+    public static function AjouterDeck($idVisibilite, $idUtilisateur)
     {
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-            "INSERT INTO Deck (nom_deck, Id_Visibilite, Id_Utilisateur) VALUES (:nom_deck, :Id_Visibilite, :id_utilisateur)"
+            "INSERT INTO Deck (Id_Visibilite, Id_Utilisateur) VALUES (:Id_Visibilite, :id_utilisateur)"
         );
 
-        $req->bindParam(':nom_deck', $nomDeck);
         $req->bindParam(':Id_Visibilite', $idVisibilite);
         $req->bindParam(':id_utilisateur', $idUtilisateur);
 

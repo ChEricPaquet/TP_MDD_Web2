@@ -34,17 +34,17 @@ while ($carte = $requeteCartes->fetch()) {
         <label class="form-label fw-bold mb-2">Visibilité du deck :</label>
 
         <div class="form-check form-check-inline">
-            <input type="radio" class="form-check-input" name="visibilite" id="radioPublic" value="public" checked>
+            <input type="radio" class="form-check-input" name="visibilite" id="radioPublic" value="3" checked>
             <label class="form-check-label" for="radioPublic">Public</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input type="radio" class="form-check-input" name="visibilite" id="radioClan" value="clan">
+            <input type="radio" class="form-check-input" name="visibilite" id="radioClan" value="2">
             <label class="form-check-label" for="radioClan">Clan seulement</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input type="radio" class="form-check-input" name="visibilite" id="radioPrive" value="prive">
+            <input type="radio" class="form-check-input" name="visibilite" id="radioPrive" value="1">
             <label class="form-check-label" for="radioPrive">Privé</label>
         </div>
     </div>

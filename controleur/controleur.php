@@ -4,6 +4,7 @@ require_once 'modele/modeleClan.php';
 require_once 'modele/modeleUtilisateurs.php';
 require_once 'modele/modeleInvitation.php';
 require_once 'modele/modeleCommentaire.php';
+require_once 'modele/modeleDeck.php';
 
 function afficherPageAccueil()
 {
@@ -59,7 +60,12 @@ function supprimerCommentaire()
 
 function sauvegarderDeck()
 {
-    //pas implementer
+    $id_Deck = ModeleDeck::AjouterDeck($_POST['visibilite'],$_SESSION['utilisateur']['Id_Utilisateur']);
+    $tableauDeck = json_decode($_POST['tableauDeck'], true);
+    for ($compteur=0; $compteur <= count($tableauDeck); $compteur++) { 
+        ModeleDeck::AjouterCarteDeck($tableauDeck[$compteur],$id_Deck);
+    };
+    
 }
 
 function rejoindreClan()
