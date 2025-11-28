@@ -17,7 +17,7 @@ while ($carte = $requeteCartes->fetch()) {
 <script src="js/deck.js"></script>
 
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
-<form method="post" action="ajouterDeck" style="padding: 1%;" class="container py-4 bg-blue-900 tableau" id="deck">
+<form method="post" action="ajouterDeck" class="container py-4 bg-blue-900 tableau" id="deck">
     <div class="row g-4">
         <div class="card deck-slot col-3" data-id="0" id="1"> <img src="Images/Autres/cartebg.png" style="width:60%"></div>
         <div class="card deck-slot col-3" data-id="0" id="2"><img src="Images/Autres/cartebg.png" style="width:60%"></div>
@@ -56,7 +56,7 @@ while ($carte = $requeteCartes->fetch()) {
 </form>
 
 
-<div class="container py-4 bg-blue-900 tableau" id="tableau-carte" style="margin-top: 10px;">
+<div class="container py-4 bg-blue-900 tableau" id="tableau-carte" >
     <div class="row g-4">
         <?php
         $requeteCartes = ModeleCarte::ObtenirTout();

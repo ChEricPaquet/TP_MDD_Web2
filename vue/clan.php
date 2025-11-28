@@ -1,5 +1,5 @@
-<?php $titreOnglet = 'Clans'; 
-require_once "modele/modeleClan.php";?>
+<?php $titreOnglet = 'Clans';
+require_once "modele/modeleClan.php"; ?>
 
 <?php ob_start(); ?>
 
@@ -12,16 +12,18 @@ require_once "modele/modeleClan.php";?>
         $requeteClans = ModeleClan::ObtenirTous();
         while ($clan = $requeteClans->fetch()) {
         ?>
-            <div>
-                <div class="card h-100 shadow-sm border-0" >
-                    <div data-id="<?=$clan['Id_Clan']?>" class="card-body text-center">
-                        <img src="Images/Clans/<?= htmlspecialchars($clan['Id_Clan']) ?>.png"
-                            alt="<?= htmlspecialchars($clan['nom_clan']) ?>"
-                            style="width: 10%; height: auto;">
-                        <h6 class="card-title fw-semibold mb-0">
-                            <?= htmlspecialchars($clan['nom_clan']) ?>
-                        </h6>
-                    </div>
+            <div class="card h-100 shadow-sm border-0">
+                <div data-id="<?= $clan['Id_Clan'] ?>" class="card-body d-flex align-items-center justify-content-between">
+                    <!-- ChatGPT alligner l'image a droite et le texte a gauche  -->
+                    <!-- Text on the left -->
+                    <h3 data-id="<?= $clan['Id_Clan'] ?>" class="fw-bold mb-0 clan-name">
+                        <?= htmlspecialchars($clan['nom_clan']) ?>
+                    </h3>
+                    <!-- Image on the right -->
+                    <img data-id="<?= $clan['Id_Clan'] ?>"
+                        src="Images/Clans/<?= htmlspecialchars($clan['Id_Clan']) ?>.png"
+                        alt="<?= htmlspecialchars($clan['nom_clan']) ?>"
+                        class="clan-image">
                 </div>
             </div>
         <?php } ?>

@@ -34,6 +34,21 @@ class ModeleDeck
         return $req;
     }
 
+    public static function ObtenirCarteDeckParDeck($idDeck)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+            "SELECT c.* FROM Carte c JOIN CarteDeck cd ON c.Id_Carte = cd.Id_Carte WHERE cd.Id_Deck = :id_deck"
+        );
+
+        $req->bindParam(':id_deck', $idDeck);
+
+        $req->execute();
+
+        return $req;
+    }
+
     public static function SupprimerDeck($idDeck)
     {
         $connexion = BD::ObtenirConnexion();

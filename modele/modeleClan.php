@@ -3,16 +3,30 @@ require_once "modele/bd.php";
 
 class ModeleClan
 {
-    public static function AjouterUtilisateurClan($idUtilisateur, $idClan)
+    public static function AjouterUtilisateurClan($idUtilisateur, $idClan, $idRole)
     {
+        if (self::NombreUtilisateursClan($idClan)) {
+            throw new Exception("Le clan est plein.");
+        }
         $connexion = BD::ObtenirConnexion();
+        
+        $req1 = $connexion->prepare(
+            "SELECT * FROM UtilisateurClan WHERE Id_Utilisateur = :idUtilisateur"
+        );
+        $req1->bindParam(':idUtilisateur', $idUtilisateur);
+        $req1->execute();
+        if ($req1->rowCount() > 0) {
+            $userclan = $req1->fetch();
+            self::SupprimerUtilisateurClan($idUtilisateur, $userclan['Id_Clan']);
+        }
 
         $req = $connexion->prepare(
-            "INSERT INTO UtilisateurClan (Id_Utilisateur, Id_Clan) VALUES (Id_Utilisateur :idUtilisateur, Id_Clan :idClan)"
+            "INSERT INTO UtilisateurClan (Id_Utilisateur, Id_Clan, Id_Role) VALUES (:idUtilisateur, :idClan, :idRole)"
         );
 
         $req->bindParam(':idUtilisateur', $idUtilisateur);
         $req->bindParam(':idClan', $idClan);
+        $req->bindParam(':idRole', $idRole);
 
         $req->execute();
 
@@ -22,9 +36,9 @@ class ModeleClan
     public static function SupprimerUtilisateurClan($idUtilisateur, $idClan)
     {
         $connexion = BD::ObtenirConnexion();
-        
+
         $req = $connexion->prepare(
-            "DELETE FROM UtilisateurClan WHERE Id_Clan = :idClan AND id = :idUtilisateur"
+            "DELETE FROM UtilisateurClan WHERE Id_Clan = :idClan AND Id_Utilisateur = :idUtilisateur"
         );
 
         $req->bindParam(':idClan', $idClan);
@@ -34,7 +48,7 @@ class ModeleClan
         $req->execute();
     }
 
-    public static function AjouterClan($nom,$description)
+    public static function AjouterClan($nom, $description)
     {
         $connexion = BD::ObtenirConnexion();
 
@@ -54,10 +68,10 @@ class ModeleClan
     public static function SupprimerClan($idClan)
     {
         $connexion = BD::ObtenirConnexion();
-        
+
         $req1 = $connexion->prepare(
             "DELETE FROM Clan WHERE Id_Clan = :idClan"
-            
+
         );
 
         $req1->bindParam(':idClan', $idClan);
@@ -121,7 +135,7 @@ class ModeleClan
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-            "SELECT nom_clan FROM Clan 
+            "SELECT * FROM Clan 
             JOIN UtilisateurClan ON Clan.Id_Clan = UtilisateurClan.Id_Clan 
             WHERE UtilisateurClan.Id_Utilisateur = :Id_Utilisateur"
         );
@@ -158,5 +172,23 @@ class ModeleClan
 
         return $req;
     }
+
+    public static function NombreUtilisateursClan($idClan)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+            "SELECT COUNT(*) AS nombre_utilisateurs FROM UtilisateurClan WHERE Id_Clan = :idClan"
+        );
+
+        $req->bindParam(':idClan', $idClan);
+
+        $req->execute();
+
+        if ($req >= 50) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
-?>

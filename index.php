@@ -1,4 +1,5 @@
 <?php
+
 // La première chose qu'on fait à chaque requête est de démarrer la session.
 // Ainsi, on peut accéder aux variables de session dans tout le site.
 session_start();
@@ -53,6 +54,24 @@ try {
             break;
         case 'ajouterCommentaire':
             ajouterCommentaire();
+            break;
+        case 'supprimerCommentaire':
+            supprimerCommentaire();
+            break;
+        case 'sauvegarderDeck':
+            sauvegarderDeck();
+            break;
+        case 'rejoindreClan':
+            rejoindreClan();
+            break;
+        case 'accepterInvitation':
+            accepterInvitation();
+            break;
+        case 'refuserInvitation':
+            refuserInvitation();
+            break;
+        case 'quitterClan':
+            quitterClan();
             break;
         default:
             http_response_code(404);

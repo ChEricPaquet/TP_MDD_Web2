@@ -17,7 +17,7 @@ function afficherPageProfil()
 
     $id = $_SESSION['utilisateur']['Id_Utilisateur'];
     if (!empty($_GET['id'])) {
-        $id = $_GET['id'];   
+        $id = $_GET['id'];
     }
     // Afficher la page de profil
     require 'vue/profil.php';
