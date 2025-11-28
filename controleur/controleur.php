@@ -68,11 +68,15 @@ function sauvegarderDeck()
     
 }
 
-function rejoindreClan()
+function rejoindreClan($idClan)
 {
+    if($_POST["Id_CLan"])
+    {
+        $idClan = $_POST['Id_Clan'];
+    }
     // Ajout de l'utilisateur dans la base de données
     try {
-        ModeleClan::AjouterUtilisateurClan($_SESSION['utilisateur']['Id_Utilisateur'], $_POST['Id_Clan'], 1);
+        ModeleClan::AjouterUtilisateurClan($_SESSION['utilisateur']['Id_Utilisateur'], $idClan, 1);
         echo "Rejoint le clan avec succès.";
         exit;
     } catch (Exception $e) {
@@ -145,7 +149,8 @@ function quitterClan()
 function ajoutClan()
 {
     try{
-        ModeleClan::AjouterClan($_POST['nomClan'], $_POST['descriptionClan']);
+        $idClan = ModeleClan::AjouterClan($_POST['nomClan'], $_POST['descriptionClan']);
+        rejoindreClan($idClan);
     } catch (Exception $e) {
         $_SESSION['erreurs'] = ["Impossible de créer un clan : " . $e->getMessage()];
         http_response_code(400);
