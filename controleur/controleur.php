@@ -135,3 +135,15 @@ function quitterClan()
         exit;
     }
 }
+
+function ajoutClan()
+{
+    try{
+        ModeleClan::AjouterClan($_POST['nomClan'], $_POST['descriptionClan']);
+    } catch (Exception $e) {
+        $_SESSION['erreurs'] = ["Impossible de créer un clan : " . $e->getMessage()];
+        http_response_code(400);
+        echo json_encode($_SESSION['erreurs']);
+    exit;
+    }
+}

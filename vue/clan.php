@@ -8,6 +8,7 @@ require_once "modele/modeleClan.php"; ?>
 <h1 class="text-center big-goofy-title"><?php echo $titreOnglet; ?></h1>
 <div class="container bg-blue-900 tableau" id="tableau-clans">
     <div>
+         <a href="index.php?action=afficherPageCreationClan" class="btn btn-primary btn-plus">+</a>
         <?php
         $requeteClans = ModeleClan::ObtenirTous();
         while ($clan = $requeteClans->fetch()) {

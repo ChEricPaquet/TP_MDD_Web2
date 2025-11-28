@@ -23,6 +23,10 @@ function afficherPageProfil()
     require 'vue/profil.php';
 }
 
+function afficherPageCreationClan()
+{
+    require 'vue/creationClan.php';
+}
 
 function validerDonneesAuthentification()
 {

@@ -27,6 +27,9 @@ try {
         case 'afficherPageProfil':
             afficherPageProfil();
             break;
+        case 'afficherPageCreationClan':
+            afficherPageCreationClan();
+            break;
         case 'connecter':
             connecter();
             break;
@@ -72,6 +75,9 @@ try {
             break;
         case 'quitterClan':
             quitterClan();
+            break;
+        case 'ajoutClan':
+            ajoutClan();
             break;
         default:
             http_response_code(404);

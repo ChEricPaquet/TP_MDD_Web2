@@ -53,7 +53,7 @@ class ModeleClan
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-            "INSERT INTO Clan (nom_clan, description_clan) VALUES (nom_clan :nom_clan,description_clan :description_clan)"
+            "INSERT INTO Clan (nom_clan, description_clan) VALUES (:nom_clan, :description_clan)"
         );
 
         $req->bindParam(':nom_clan', $nom);
