@@ -10,16 +10,18 @@ if (!$clan) {
 }
 $requeteUtilisateurs = ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']);
 $clanUtilisateur = $requeteUtilisateurs->fetch();
-$RequeteUtilisateur = ModeleClan::ObtenirUtilisateursClan($_SESSION['utilisateur']['Id_Utilisateur'],$_GET['id']);
-$utilisateur = $RequeteUtilisateur->fetch();
 $modifierChef = false;
 $modifierRole = false;
-if ($utilisateur['Id_Role'] == "4") {
-    $modifierChef = true;
-    $modifierRole = true;
-}
-if ($utilisateur['Id_Role'] == "3") {
-    $modifierRole = true;
+if ($clanUtilisateur != null && $clanUtilisateur['Id_Clan'] == $clan['Id_Clan'])
+    {
+
+        if ($clanUtilisateur['Id_Role'] == 4) {
+        $modifierChef = true;
+        $modifierRole = true;
+    }
+    if ($clanUtilisateur['Id_Role'] == 3) {
+        $modifierRole = true;
+    }
 }
 ?>
 
@@ -96,7 +98,7 @@ if ($utilisateur['Id_Role'] == "3") {
             </div>
 
         <?php } ?>
-        <?php if ($modifierRole = true) { ?>
+        <?php if ($modifierRole == true) { ?>
             <form method="post" action="changerRole">
                 <div  class="form-check form-check-inline">
                     <input type="radio" class="form-" name="idRole" id="radioMembre" value="1" checked>
@@ -113,12 +115,12 @@ if ($utilisateur['Id_Role'] == "3") {
                     <label class="form-check-label" for="radioAdjoint">Chef-Adjoint</label>
                 </div>
 
-                <? if ($modifierChef = true) {?>
+                <?php if ($modifierChef = true) {?>
                     <div class="form-check form-check-inline">
                         <input type="radio" class="form-" name="idRole" id="radioMembre" value="4">
                         <label class="form-check-label" for="radioMembre">Chef</label>
                     </div>
-                <?}?>
+                <?php }?>
                 <input type="hidden" name="idUtilisateur" value="<?=$utilisateurs['Id_Utilisateur']?>">
                 <div>
                     <button type="submit" class="btn btn-primary px-5 py-2 fs-5 fw-semibold" id="envoyer">
@@ -126,7 +128,7 @@ if ($utilisateur['Id_Role'] == "3") {
                     </button>
                 </div>
             </form>
-        <?}?>
+        <?php }?>
 
 
     </div>

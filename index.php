@@ -65,7 +65,7 @@ try {
             sauvegarderDeck();
             break;
         case 'rejoindreClan':
-            rejoindreClan(null);
+            rejoindreClan(null, null);
             break;
         case 'accepterInvitation':
             accepterInvitation();
@@ -78,11 +78,13 @@ try {
             break;
         case 'ajoutClan':
             ajoutClan();
-        case 'sauvegarderDeck':
-            sauvegarderDeck();
             break;
         case 'changerRole':
             changerRole();
+            break;
+        case 'afficherClanUtilisateur':
+            afficherClanUtilisateur();
+            break;
         default:
             http_response_code(404);
             throw new Exception('404 : Action non supportée');

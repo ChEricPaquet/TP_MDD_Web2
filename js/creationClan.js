@@ -37,7 +37,7 @@ async function gererSoumission(event) {
 function gererSuccessServeur(htmlSuccess) {
     document.querySelector("#reponse").innerHTML = htmlSuccess;
     setTimeout(() => {
-        document.location = "index.php?action=afficherPageProfil";
+        document.location = "index.php?action=afficherClanUtilisateur";
     }, 1000);
 }
 

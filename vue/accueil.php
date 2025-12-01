@@ -14,7 +14,7 @@ ob_start();
 <img src="Images/Autres/ClashRoyal.png" alt="logo du site" class="header-img" style="width: 50%;">
 <div class="container py-4 bg-blue-900 tableau">
 <h1 class="text-center big-goofy-title">Accueil</h1>
-<h2 class="text-center">Bienvenu sur le site officiel de Clash Royal, ici vous pourrez créé des decks et commenter les decks créé par les autres joueurs de Clash Royal, vous pouvez également rejoindre des clans et inviter d'autre joueur dans ces derniers</h2>
+<h2 class="text-center">Bienvenu sur le site officiel de Clash Royale, ici vous pourrez créé des decks et commenter les decks créé par les autres joueurs de Clash Royal, vous pouvez également rejoindre des clans et inviter d'autre joueur dans ces derniers</h2>
 <h3 class="text-center">Cela est pourquoi nous clashons!!</h3>
 
 <img src="Images/Autres/ImageAccueil.jpg" alt="deuxième logo du site" class="mx-auto d-block" style="width: 80%;">

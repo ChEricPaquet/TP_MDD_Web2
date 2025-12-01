@@ -20,10 +20,6 @@ function afficherClan()
 }
 function afficherClanDesc($id)
 {
-    // Vérifier que l'ID du clan est fourni et valide CHATGPT
-    if (!isset($id) || !is_numeric($id)) {
-        // Ajouter une gestion d'erreur appropriée ici
-    }
     require 'vue/clanDescriptif.php';
 }
 function afficherInvitations()
@@ -68,15 +64,18 @@ function sauvegarderDeck()
     
 }
 
-function rejoindreClan($idClan)
-{
+function rejoindreClan($idClan, $idRole)
+{   
+    if ($idRole == null) {
+        $idRole = 1;
+    }
     if($idClan == null)
     {
         $idClan = $_POST['Id_Clan'];
     }
     // Ajout de l'utilisateur dans la base de données
     try {
-        ModeleClan::AjouterUtilisateurClan($_SESSION['utilisateur']['Id_Utilisateur'], $idClan, 1);
+        ModeleClan::AjouterUtilisateurClan($_SESSION['utilisateur']['Id_Utilisateur'], $idClan, $idRole);
         echo "Rejoint le clan avec succès.";
         exit;
     } catch (Exception $e) {
@@ -137,7 +136,12 @@ function refuserInvitation()
 function quitterClan()
 {
     try {
+        $utilisateurRequete = ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']);
+        $utilisateur = $utilisateurRequete->fetch();
         ModeleClan::SupprimerUtilisateurClan($_SESSION['utilisateur']['Id_Utilisateur'], $_POST['Id_Clan']);
+        if ($utilisateur && $utilisateur['Id_Role'] == 4) {
+            ModeleClan::PromouvoirNouveauChef($_POST['Id_Clan']);
+        }
     } catch (Exception $e) {
         $_SESSION['erreurs'] = "Impossible de quitter le clan : " . $e->getMessage();
         http_response_code(400);
@@ -149,8 +153,8 @@ function quitterClan()
 function ajoutClan()
 {
     try{
-        $idClan = ModeleClan::AjouterClan($_POST['nomClan'], $_POST['descriptionClan']);
-        rejoindreClan($idClan);
+        $idClan = ModeleClan::AjouterClan($_POST['nomClan'], $_POST['descriptionClan'], $_POST['prive']);
+        rejoindreClan($idClan, 4);
     } catch (Exception $e) {
  if ($e->getCode() == 23000) {  // CHAPTGPT: code d'erreur pour erreur de clé primaire/unique
             if (str_contains($e->getMessage(), "1062")) {
@@ -173,4 +177,14 @@ function changerRole(){
     } catch (\Throwable $th) {
         //throw $th;
     }
+}
+
+function afficherClanUtilisateur(){
+    $utilisateurRequete = ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']);
+    $utilisateur = $utilisateurRequete->fetch();
+    if ($utilisateur != null ) {
+        afficherClanDesc($utilisateur['Id_Clan']);
+    }
+        require 'vue/clanDescriptif.php';
+
 }

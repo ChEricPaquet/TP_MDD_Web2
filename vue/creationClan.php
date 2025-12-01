@@ -25,6 +25,18 @@ require_once "modele/modeleClan.php"; ?>
                 </div>
             </div>
 
+            <div class="mb-3 mt-3">
+                <label class="form-label d-block">Visibilité du clan :</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="prive" id="publicClan" value="0" checked>
+                    <label class="form-check-label" for="publicClan">Public</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="prive" id="privateClan" value="1">
+                    <label class="form-check-label" for="privateClan">Privé</label>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary">Créer le clan</button>
             <div id="reponse"></div>
         </form>

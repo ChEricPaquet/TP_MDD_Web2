@@ -9,7 +9,7 @@ class ModeleClan
             throw new Exception("Le clan est plein.");
         }
         $connexion = BD::ObtenirConnexion();
-        
+
         $req1 = $connexion->prepare(
             "SELECT * FROM UtilisateurClan WHERE Id_Utilisateur = :idUtilisateur"
         );
@@ -46,18 +46,25 @@ class ModeleClan
 
 
         $req->execute();
+
+        $utilisateurs = self::ObtenirUtilisateursClan($idClan);
+
+        if ($utilisateurs->rowCount() == 0) {
+            self::SupprimerClan($idClan);
+        }
     }
 
-    public static function AjouterClan($nom, $description)
+    public static function AjouterClan($nom, $description, $prive)
     {
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-            "INSERT INTO Clan (nom_clan, description_clan) VALUES (:nom_clan, :description_clan)"
+            "INSERT INTO Clan (nom_clan, description_clan, prive) VALUES (:nom_clan, :description_clan, :prive)"
         );
 
         $req->bindParam(':nom_clan', $nom);
         $req->bindParam(':description_clan', $description);
+        $req->bindParam(':prive', $prive);
 
         $req->execute();
 
@@ -178,21 +185,20 @@ class ModeleClan
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-            "SELECT COUNT(*) AS nombre_utilisateurs FROM UtilisateurClan WHERE Id_Clan = :idClan"
+            "SELECT COUNT(*) AS nombre FROM UtilisateurClan WHERE Id_Clan = :idClan"
         );
 
         $req->bindParam(':idClan', $idClan);
-
         $req->execute();
+        //ChatGPT obtenir le nombre de personne dans le clan
+        $result = $req->fetch(PDO::FETCH_ASSOC);
 
-        if ($req >= 50) {
-            return true;
-        } else {
-            return false;
-        }
+        return ($result['nombre'] >= 50);
     }
 
-    public static function ModifierRole($idUtilisateur, $valeurRole){
+
+    public static function ModifierRole($idUtilisateur, $valeurRole)
+    {
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
@@ -206,6 +212,34 @@ class ModeleClan
         $req->execute();
     }
 
+    //ChatGPT Fonction pour remplacer chef
+    public static function PromouvoirNouveauChef($idClan)
+    {
+        $connexion = BD::ObtenirConnexion();
 
+        // Find the next highest role (3, then 2, then 1)
+        $req = $connexion->prepare("
+        SELECT Id_Utilisateur, Id_Role 
+        FROM UtilisateurClan
+        WHERE Id_Clan = :idClan
+        ORDER BY Id_Role DESC
+        LIMIT 1
+    ");
+
+        $req->bindParam(':idClan', $idClan);
+        $req->execute();
+        $nouveauChef = $req->fetch();
+
+        if ($nouveauChef) {
+            // Promote to leader (role 4)
+            $update = $connexion->prepare("
+            UPDATE UtilisateurClan 
+            SET Id_Role = 4 
+            WHERE Id_Utilisateur = :idUtilisateur
+        ");
+
+            $update->bindParam(':idUtilisateur', $nouveauChef['Id_Utilisateur']);
+            $update->execute();
+        }
+    }
 }
-

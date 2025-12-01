@@ -17,6 +17,8 @@ $requetesDecks = ModeleDeck::ObtenirDecksParUtilisateur($id);
 
 <?php $clanrequete = ModeleClan::ObtenirClanUtilisateur($id);
 $clan = $clanrequete->fetch() ?>
+<?php $clanSessionrequete = ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']);
+$clanSession = $clanSessionrequete->fetch() ?>
 <div class="tableau container bg-blue-900 mt-4">
     <div class="card bg-blue-700">
         <div class="card-body ">
@@ -33,12 +35,17 @@ $clan = $clanrequete->fetch() ?>
 <div class="container mt-4">
     <?php $compteur = 0;
     while ($deck = $requetesDecks->fetch()) :
+        if ($deck['Id_Visibilite'] == 1 && $id != $_SESSION['utilisateur']['Id_Utilisateur']) { continue;} 
+        elseif ($deck['Id_Visibilite'] == 2 && $clanSession != null && $clanSession['Id_Clan'] != $clan['Id_Clan']) { continue;}
         $compteur++; ?>
         <div class="deck-container tableau p-3 mb-4 bg-blue-900">
             <h3 class="text-center mb-3">Deck #<?= $compteur ?></h3>
             <?php
             $cartesReq = ModeleDeck::ObtenirCarteDeckParDeck($deck['Id_Deck']);
-            ?>
+            if ($deck['Id_Visibilite'] == 1 && $id != $_SESSION['utilisateur']['Id_Utilisateur'])
+            {?>
+            <button class="btn btn-danger btn-plus"><img src="Images/Autres/Poubelle.png" style="width: 1%;" data-id="<?php echo $deck['Id_Deck']?>"></button>
+            <?php ;}?>
             <!-- CHATGPT: mettre les cartes dans une belle grille cool et bleu -->
             <div class="row g-2 justify-content-center">
                 <?php while ($carte = $cartesReq->fetch()) : ?>
@@ -53,6 +60,7 @@ $clan = $clanrequete->fetch() ?>
                     </div>
                 <?php endwhile; ?>
             </div>
+            <div class="tableau" id="commentaires"> </div>
             <div id="commentaire">
                 <form id="formCommentaire" method="$_POST" action="index.php?action=ajouterCommentaire" class="tableau needs-validation " novalidate>
                     <div class="mb-3 mt-3">
