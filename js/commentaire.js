@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-    const form = document.querySelectorAll("#ajouterCommentaire");
-    form.addEventListener("submit", gererSoumission);
+        document.querySelectorAll('#formCommentaire').forEach(form => {
+        form.addEventListener('submit', () => gererSoumission());
+    });
+    document.querySelectorAll('#supprimerDeck').forEach(bouton => {
+        bouton.addEventListener('click', () => gererSupprimer(bouton));
+    });
 }
 
 async function gererSoumission(event) {
@@ -25,20 +29,24 @@ async function gererSoumission(event) {
 
         const donnees = await reponse.text();
         if (reponse.ok) {
-            gererSuccessServeur(donnees);
+            gererSuccessServeur(donnees, formulaire);
         } else {
-            gererErreurServeur(donnees);
+            gererErreurServeur(donnees, formulaire);
         }
     } catch (erreur) {
-        gererErreurClient(erreur);
+        gererErreurClient(erreur, formulaire);
     }
 }
 
-function gererSuccessServeur(htmlSuccess) {
+async function gereSupprimer(bouton) {
+    const deckId = bouton.dataset.id;
+}
+
+function gererSuccessServeur(htmlSuccess, formulaire) {
     //ajouter commentaire
 }
 
-function gererErreurServeur(htmlErreur) {
+function gererErreurServeur(htmlErreur, formulaire) {
     document.querySelector("#reponseCommentaire").innerHTML = `
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         ${htmlErreur}
@@ -47,8 +55,9 @@ function gererErreurServeur(htmlErreur) {
     `;
 }
 
-function gererErreurClient(erreur) {
+function gererErreurClient(erreur, formulaire) {
     console.error("Erreur :", erreur);
+    formulaire:close
     document.querySelector("#reponseCommentaire").innerHTML = `
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         Une erreur est survenue. Veuillez réessayer plus tard.
