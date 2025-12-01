@@ -3,13 +3,15 @@ require_once "modele/bd.php";
 
 class ModeleCommentaire{
     public static function AjouterCommentaire($Id_Utilisateur,$texte,$id_Deck){
+        $dateHeure = date_create('now');
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-                "INSERT INTO Commentaire (Id_Utilisateur, texte, Id_Deck) VALUES (Id_Utilisateur :idUtilisateur, texte :texte, Id_Deck :idDeck)"
+            "INSERT INTO Commentaire (Id_Utilisateur, dateheure, texte, Id_Deck) VALUES (Id_Utilisateur :idUtilisateur, dateheure :dateheure, texte :texte, Id_Deck :idDeck)"
         );
 
         $req->bindParam(':idUtilisateur', $Id_Utilisateur);
+        $req->bindParam(':dateheure', $dateHeure);
         $req->bindParam(':texte', $texte);
         $req->bindParam(':idDeck', $id_Deck);
         
@@ -44,6 +46,20 @@ class ModeleCommentaire{
         $req->bindParam(':idCommentaire', $id_Commentaire);
 
         $req->execute();
+    }
+
+    
+    public static function ObtenirTousLesCommentaires($id_Deck)
+    {
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+            "SELECT * FROM Commentaire WHERE Id_Deck = :id_Deck"
+        );
+
+        $req->bindParam(':id_Deck', $id_Deck);
+
+        $req->fetch();
     }
 }
 ?>

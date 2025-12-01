@@ -191,4 +191,21 @@ class ModeleClan
             return false;
         }
     }
+
+    public static function ModifierRole($idUtilisateur, $valeurRole){
+        $connexion = BD::ObtenirConnexion();
+
+        $req = $connexion->prepare(
+            "UPDATE UtilisateurClan SET Id_Role = :id_Role WHERE Id_Utilisateur = :idUtilisateur"
+        );
+
+        $req->bindParam(':idUtilisateur', $idUtilisateur);
+
+        $req->bindParam(':id_Role', $valeurRole);
+
+        $req->execute();
+    }
+
+
 }
+

@@ -10,6 +10,17 @@ if (!$clan) {
 }
 $requeteUtilisateurs = ModeleClan::ObtenirClanUtilisateur($_SESSION['utilisateur']['Id_Utilisateur']);
 $clanUtilisateur = $requeteUtilisateurs->fetch();
+$RequeteUtilisateur = ModeleClan::ObtenirUtilisateursClan($_SESSION['utilisateur']['Id_Utilisateur'],$_GET['id']);
+$utilisateur = $RequeteUtilisateur->fetch();
+$modifierChef = false;
+$modifierRole = false;
+if ($utilisateur['Id_Role'] == "4") {
+    $modifierChef = true;
+    $modifierRole = true;
+}
+if ($utilisateur['Id_Role'] == "3") {
+    $modifierRole = true;
+}
 ?>
 
 <script src="js/clandescriptif.js"></script>
@@ -83,7 +94,40 @@ $clanUtilisateur = $requeteUtilisateurs->fetch();
             <div class="panel-nom py-2" data-id="<?= $utilisateurs['Id_Utilisateur'] ?>">
                 <?= htmlspecialchars($utilisateur['nom']) ?> - <?= htmlspecialchars($role['role']) ?>
             </div>
+
         <?php } ?>
+        <?php if ($modifierRole = true) { ?>
+            <form method="post" action="changerRole">
+                <div  class="form-check form-check-inline">
+                    <input type="radio" class="form-" name="idRole" id="radioMembre" value="1" checked>
+                    <label class="form-check-label" for="radioMembre">Membre</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-" name="idRole" id="radioAine" value="2">
+                    <label class="form-check-label" for="radioAine">Aîné</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-" name="idRole" id="radioAdjoint" value="3">
+                    <label class="form-check-label" for="radioAdjoint">Chef-Adjoint</label>
+                </div>
+
+                <? if ($modifierChef = true) {?>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-" name="idRole" id="radioMembre" value="4">
+                        <label class="form-check-label" for="radioMembre">Chef</label>
+                    </div>
+                <?}?>
+                <input type="hidden" name="idUtilisateur" value="<?=$utilisateurs['Id_Utilisateur']?>">
+                <div>
+                    <button type="submit" class="btn btn-primary px-5 py-2 fs-5 fw-semibold" id="envoyer">
+                        Changer le role
+                    </button>
+                </div>
+            </form>
+        <?}?>
+
 
     </div>
 </div>
