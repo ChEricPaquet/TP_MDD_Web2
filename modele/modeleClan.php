@@ -205,4 +205,7 @@ class ModeleClan
 
         $req->execute();
     }
+
+
 }
+

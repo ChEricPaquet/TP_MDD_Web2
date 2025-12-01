@@ -81,6 +81,8 @@ try {
         case 'sauvegarderDeck':
             sauvegarderDeck();
             break;
+        case 'changerRole':
+            changerRole();
         default:
             http_response_code(404);
             throw new Exception('404 : Action non supportée');

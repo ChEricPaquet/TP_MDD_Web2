@@ -166,3 +166,11 @@ function ajoutClan()
         exit;
     }
 }
+
+function changerRole(){
+    try {
+        ModeleClan::ModifierRole($_POST('idUtilisateur'),$_POST('idRole'));
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+}
