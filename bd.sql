@@ -294,6 +294,14 @@ VALUES
 (1, 9),
 (3, 10);
 
+INSERT INTO Commentaire (dateheure, texte, Id_Utilisateur, Id_Deck)
+VALUES
+(NOW(),"Bridge spam qui rend fou, ça attaque de partout 😈",1,1),
+(NOW(),"Équilibré et polyvalent, parfait pour grimper en ladder 🚀",2,4),
+(NOW(),"Cycle ultra rapide, l’adversaire n’a même pas le temps de respirer 😮‍💨",3,7),
+(NOW(),"Ce deck est une vraie machine à pression 🔥",4,2),
+(NOW(),"Ballon qui surprend et fait des dégâts monstrueux en une seule attaque 🎈💥",5,5);
+
 INSERT INTO CarteDeck (Id_Carte, Id_Deck)
 VALUES
 (1, 1),
