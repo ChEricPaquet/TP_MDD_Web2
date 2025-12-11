@@ -1,32 +1,36 @@
 <?php
 require_once "modele/bd.php";
 
-class ModeleCommentaire{
-    public static function AjouterCommentaire($Id_Utilisateur,$texte,$id_Deck){
+class ModeleCommentaire
+{
+    public static function AjouterCommentaire($Id_Utilisateur, $texte, $id_Deck)
+    {
         $dateHeure = date_create('now');
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-            "INSERT INTO Commentaire (Id_Utilisateur, dateheure, texte, Id_Deck) VALUES (Id_Utilisateur :idUtilisateur, dateheure :dateheure, texte :texte, Id_Deck :idDeck)"
+            "INSERT INTO Commentaire (Id_Utilisateur, dateheure, texte, Id_Deck) 
+        VALUES (:idUtilisateur, :dateheure, :texte, :idDeck)"
         );
+
+        $dateHeure = date('Y-m-d H:i:s');
 
         $req->bindParam(':idUtilisateur', $Id_Utilisateur);
         $req->bindParam(':dateheure', $dateHeure);
         $req->bindParam(':texte', $texte);
         $req->bindParam(':idDeck', $id_Deck);
-        
-
 
         $req->execute();
 
         return $connexion->lastInsertId();
     }
 
-    public static function ObtenirCommentairesParDeck($id_Deck){
+    public static function ObtenirCommentairesParDeck($id_Deck)
+    {
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-                "SELECT * FROM Commentaire WHERE Id_Deck = :idDeck"
+            "SELECT * FROM Commentaire WHERE Id_Deck = :idDeck"
         );
 
         $req->bindParam(':idDeck', $id_Deck);
@@ -36,11 +40,12 @@ class ModeleCommentaire{
         return $req;
     }
 
-    public static function SupprimerCommentaire($id_Commentaire){
+    public static function SupprimerCommentaire($id_Commentaire)
+    {
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
-                "DELETE FROM Commentaire WHERE Id_Commentaire = :idCommentaire"
+            "DELETE FROM Commentaire WHERE Id_Commentaire = :idCommentaire"
         );
 
         $req->bindParam(':idCommentaire', $id_Commentaire);
@@ -48,7 +53,7 @@ class ModeleCommentaire{
         $req->execute();
     }
 
-    
+
     public static function ObtenirTousLesCommentaires($id_Deck)
     {
         $connexion = BD::ObtenirConnexion();
@@ -62,4 +67,3 @@ class ModeleCommentaire{
         $req->fetch();
     }
 }
-?>

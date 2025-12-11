@@ -35,7 +35,8 @@ async function gererSoumission(event) {
 }
 
 function gererSuccessServeur(htmlSuccess) {
-    document.querySelector("#reponse").innerHTML = htmlSuccess;
+    document.querySelector("#reponse").innerHTML = `<div class="alert alert-success" role="alert">
+    Création réussie!</div>`;
     setTimeout(() => {
         document.location = "index.php?action=afficherClanUtilisateur";
     }, 1000);

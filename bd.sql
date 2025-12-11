@@ -277,9 +277,7 @@ VALUES
 ("Gardiens des Noobs", "Un clan dévoué à la protection des faibles, avec une forte tradition de défense.", 1),
 ("Dragons Écarlates", "Clan fier et puissant, spécialisé dans la guerre des clans", 0),
 ("FlashLight", "Le top du top, les rois des rois, bienvenu dans la cours des grands.", 0),
-("Liberté du Québec", "Un clan légendaire, lié aux arts patriotiques et aux secrets français québecois.", 0),
-("McDonaldDriveThru", "Mettez les frites dans le sac petit frère", 0);
-
+("Liberté du Québec", "Un clan légendaire, lié aux arts patriotiques et aux secrets français québecois.", 0);
 
 INSERT INTO Deck (Id_Visibilite, Id_Utilisateur)
 VALUES
@@ -364,7 +362,7 @@ VALUES
 (3, 7, 4),
 (3, 8, 2),
 (3, 9, 1),
-(4, 10, 4);
+(4, 10, 4),
 (4, 11, 2),
 (4, 12, 1),
 (5, 13, 4),

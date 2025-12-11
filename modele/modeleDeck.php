@@ -47,9 +47,25 @@ class ModeleDeck
 
         return $req;
     }
+    
+    public static function SupprimerCarteDeck($idDeck)
+    {                
+        $connexion = BD::ObtenirConnexion();
+        $req = $connexion->prepare(
+            "DELETE FROM CarteDeck WHERE Id_Deck = :idDeck"
+        );
+
+        $req->bindParam(':idDeck', $idDeck);
+
+        $req->execute();
+
+        return $connexion->lastInsertId();
+    }
 
     public static function SupprimerDeck($idDeck)
     {
+        self::SupprimerCarteDeck($idDeck);
+        
         $connexion = BD::ObtenirConnexion();
 
         $req = $connexion->prepare(
@@ -98,21 +114,6 @@ class ModeleDeck
             return $connexion->lastInsertId();
         }
         return false;
-    }
-
-    public static function SupprimerCarteDeck($idCarte, $idDeck)
-    {                
-        $connexion = BD::ObtenirConnexion();
-        $req = $connexion->prepare(
-            "DELETE FROM CarteDeck WHERE Id_Carte = :idCarte AND Id_Deck = :idDeck"
-        );
-
-        $req->bindParam(':idCarte', $idCarte);
-        $req->bindParam(':idDeck', $idDeck);
-
-        $req->execute();
-
-        return $connexion->lastInsertId();
     }
     
     public static function NombreChampion($idCarte, $idDeck)

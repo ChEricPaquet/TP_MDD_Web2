@@ -76,11 +76,20 @@ async function gererSoumission(event) {
 }
 
 function gererSuccessServeur(htmlSuccess) {
-    document.querySelector("#reponse").innerHTML = htmlSuccess;
+    const zone = document.querySelector("#reponse");
+
+    zone.innerHTML = `
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            ${htmlSuccess}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+
     setTimeout(() => {
-            document.querySelector("#reponse").innerHTML = "";
-    }, 1000);
+        zone.innerHTML = "";
+    }, 2000);
 }
+
 
 function gererErreurServeur(htmlErreur, deux) {   
     var div = document.querySelector("#reponse")

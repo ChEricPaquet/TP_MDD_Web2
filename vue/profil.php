@@ -35,18 +35,24 @@ $clanSession = $clanSessionrequete->fetch() ?>
 <div class="container mt-4">
     <?php $compteur = 0;
     while ($deck = $requetesDecks->fetch()) :
-        if ($deck['Id_Visibilite'] == 1 && $id != $_SESSION['utilisateur']['Id_Utilisateur']) { continue;} 
-        elseif ($deck['Id_Visibilite'] == 2 && $clanSession != null && $clanSession['Id_Clan'] != $clan['Id_Clan']) { continue;}
+        if ($deck['Id_Visibilite'] == 1 && $id != $_SESSION['utilisateur']['Id_Utilisateur']) {
+            continue;
+        } elseif ($deck['Id_Visibilite'] == 2 && $clanSession != null && $clanSession['Id_Clan'] != $clan['Id_Clan']) {
+            continue;
+        }
         $compteur++; ?>
         <div class="deck-container tableau p-3 mb-4 bg-blue-900">
             <h3 class="text-center mb-3">Deck #<?= $compteur ?></h3>
             <?php
             $cartesReq = ModeleDeck::ObtenirCarteDeckParDeck($deck['Id_Deck']);
-            if ($deck['Id_Visibilite'] == 1 && $id != $_SESSION['utilisateur']['Id_Utilisateur'])
-            {?>
-            <button class="btn btn-danger btn-plus"><img src="Images/Autres/Poubelle.png" style="width: 1%;" data-id="<?php echo $deck['Id_Deck']?>"></button>
-            <?php ;}?>
-            <!-- CHATGPT: mettre les cartes dans une belle grille cool et bleu -->
+            if ($deck['Id_Utilisateur'] == $_SESSION['utilisateur']['Id_Utilisateur']) : ?>
+                <button class="btn btn-danger btn-plus supprimer-deck"
+                    data-id="<?= $deck['Id_Deck'] ?>">
+                    <img src="Images/Autres/Poubelle.png" style="width: 1.5rem;">
+                </button>
+            <?php endif; ?>
+
+            <!-- ChatGPT: mettre les cartes dans une belle grille cool et bleu -->
             <div class="row g-2 justify-content-center">
                 <?php while ($carte = $cartesReq->fetch()) : ?>
                     <div class="col-6 col-sm-4 col-md-3 col-lg-3">
@@ -60,13 +66,38 @@ $clanSession = $clanSessionrequete->fetch() ?>
                     </div>
                 <?php endwhile; ?>
             </div>
-            <div class="tableau" id="commentaires"> </div>
+            <?php
+            $commentaires = ModeleCommentaire::ObtenirCommentairesParDeck($deck['Id_Deck']);
+            ?>
+            <!-- ChatGPT: DISPLAY COMMENTS PER DECK -->
+            <div class="commentaires-zone">
+                <?php while ($com = $commentaires->fetch()) : ?>
+                    <div class="commentaire bg-blue-800 p-2 mt-2 rounded">
+                        <strong><?php
+                                $reqUtil = ModeleUtilisateurs::ObtenirTout($com['Id_Utilisateur']);
+                                $auteur = $reqUtil->fetch();
+                                echo htmlspecialchars($auteur['nom']); ?></strong>
+                        <span class="text-muted small"><?= $com['dateheure'] ?></span>
+                        <p class="m-0"><?= htmlspecialchars($com['texte']) ?></p>
+                        <?php if ($com['Id_Utilisateur'] == $_SESSION['utilisateur']['Id_Utilisateur']) : ?>
+                            <button class="btn btn-danger btn-sm mt-2 supprimer-commentaire" data-id="<?= $com['Id_Commentaire'] ?>">
+                                Supprimer
+                            </button>
+                        <?php endif; ?>
+                    </div>
+                <?php endwhile; ?>
+            </div>
             <div id="commentaire">
-                <form id="formCommentaire" method="$_POST" action="index.php?action=ajouterCommentaire" class="tableau needs-validation " novalidate>
+                <form class="formCommentaire needs-validation" method="post" novalidate>
                     <div class="mb-3 mt-3">
                         <label for="commentaire" class="form-label"> Commentaire &nbsp;:</label>
-                        <input type="text" class="form-control" id="commentaire" placeholder="Entrez un commentaire" name="commentaire" required minlength="3" maxlength="1000">
-                        <input type="hidden" name="id_clan" value="<?php $clan['Id_Clan'] ?>">
+                        <div>
+                            <input type="text" class="form-control" id="commentaire" placeholder="Entrez un commentaire" name="commentaire" required minlength="3" maxlength="100">
+                            <div class="invalid-feedback">
+                                Le commentaire doit etre entre 3 et 300 caractères.
+                            </div>
+                        </div>
+                        <input type="hidden" name="id_deck" value="<?= $deck['Id_Deck'] ?>">
                         <div id="reponseCommentaire"></div>
                         <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
                     </div>

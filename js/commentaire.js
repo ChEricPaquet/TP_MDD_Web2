@@ -1,23 +1,81 @@
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.formCommentaire').forEach(form => {
+        form.addEventListener('submit', gererSoumission);
+    });
 
-function init() {
-        document.querySelectorAll('#formCommentaire').forEach(form => {
-        form.addEventListener('submit', () => gererSoumission());
+    document.querySelectorAll('.supprimer-commentaire').forEach(btn => {
+        btn.addEventListener('click', supprimerCommentaire);
     });
-    document.querySelectorAll('#supprimerDeck').forEach(bouton => {
-        bouton.addEventListener('click', () => gererSupprimer(bouton));
+
+    document.querySelectorAll('.supprimer-deck').forEach(btn => {
+        btn.addEventListener('click', supprimerDeck);
     });
+});
+
+// ChatGPT Remove the deck pls
+async function supprimerDeck(event) {
+    const idDeck = event.target.closest('button').dataset.id;
+
+    const formData = new FormData();
+    formData.append("id_deck", idDeck);
+
+    if (!confirm("Voulez-vous vraiment supprimer ce deck?")) {
+        return;
+    }
+
+    try {
+        const response = await fetch("index.php?action=supprimerDeck", {
+            method: "POST",
+            body: formData
+        });
+
+        const text = await response.text();
+
+        if (response.ok) {
+            event.target.closest('.deck-container').remove();
+        } else {
+            alert("Erreur: " + text);
+        }
+
+    } catch (err) {
+        console.error(err);
+        alert("Une erreur est survenue.");
+    }
+}
+
+
+async function supprimerCommentaire(event) {
+    const idCommentaire = event.target.dataset.id;
+
+    const formData = new FormData();
+    formData.append("id_commentaire", idCommentaire);
+
+    try {
+        const response = await fetch("index.php?action=supprimerCommentaire", {
+            method: "POST",
+            body: formData
+        });
+
+        const text = await response.text();
+
+        if (response.ok) {
+            //ChatGPT Remove comment from page
+            event.target.closest('.commentaire').remove();
+        } else {
+            alert("Erreur: " + text);
+        }
+
+    } catch (err) {
+        console.error(err);
+        alert("Une erreur est survenue.");
+    }
 }
 
 async function gererSoumission(event) {
     event.preventDefault();
-    event.stopPropagation();
 
     const formulaire = event.target;
-
-    if (!formulaire.checkValidity()) {
-        return;
-    }
+    if (!formulaire.checkValidity()) return;
 
     const formData = new FormData(formulaire);
 
@@ -27,16 +85,21 @@ async function gererSoumission(event) {
             body: formData,
         });
 
-        const donnees = await reponse.text();
+        const html = await reponse.text();
+        //ChatGPT FIX THE JS
         if (reponse.ok) {
-            gererSuccessServeur(donnees, formulaire);
+            formulaire.reset();
+            formulaire.closest('.deck-container')
+                .querySelector('.commentaires-zone')
+                .innerHTML += html;   // server returns HTML for 1 new comment
         } else {
-            gererErreurServeur(donnees, formulaire);
+            gererErreurServeur(html, formulaire);
         }
-    } catch (erreur) {
-        gererErreurClient(erreur, formulaire);
+    } catch (e) {
+        gererErreurClient(e, formulaire);
     }
 }
+
 
 async function gereSupprimer(bouton) {
     const deckId = bouton.dataset.id;

@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Toronto');
 
 // La première chose qu'on fait à chaque requête est de démarrer la session.
 // Ainsi, on peut accéder aux variables de session dans tout le site.
@@ -84,6 +85,9 @@ try {
             break;
         case 'afficherClanUtilisateur':
             afficherClanUtilisateur();
+            break;
+        case 'supprimerDeck':
+            supprimerDeck();
             break;
         default:
             http_response_code(404);
